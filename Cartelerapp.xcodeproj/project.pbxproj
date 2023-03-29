@@ -11,6 +11,9 @@
 		D01FB97729D4409500D01536 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB97629D4409500D01536 /* ContentView.swift */; };
 		D01FB97929D4409B00D01536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97829D4409B00D01536 /* Assets.xcassets */; };
 		D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */; };
+		D01FB98629D4505200D01536 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98529D4505200D01536 /* Repository.swift */; };
+		D01FB98829D4506400D01536 /* MoviesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98729D4506400D01536 /* MoviesDataSource.swift */; };
+		D01FB98A29D4509900D01536 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		D01FB97629D4409500D01536 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D01FB97829D4409B00D01536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D01FB98529D4505200D01536 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		D01FB98729D4506400D01536 /* MoviesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDataSource.swift; sourceTree = "<group>"; };
+		D01FB98929D4509900D01536 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,8 @@
 		D01FB98229D4436300D01536 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				D01FB98529D4505200D01536 /* Repository.swift */,
+				D01FB98729D4506400D01536 /* MoviesDataSource.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -79,6 +87,7 @@
 		D01FB98329D4437E00D01536 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D01FB98929D4509900D01536 /* Model.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,8 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01FB98A29D4509900D01536 /* Model.swift in Sources */,
 				D01FB97729D4409500D01536 /* ContentView.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
+				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
+				D01FB98829D4506400D01536 /* MoviesDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
