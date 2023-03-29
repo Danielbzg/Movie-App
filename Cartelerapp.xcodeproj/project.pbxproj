@@ -55,7 +55,6 @@
 				D01FB98329D4437E00D01536 /* Models */,
 				D01FB98229D4436300D01536 /* Repository */,
 				D01FB97429D4409500D01536 /* CartelerappApp.swift */,
-				D01FB97629D4409500D01536 /* ContentView.swift */,
 				D01FB97829D4409B00D01536 /* Assets.xcassets */,
 				D01FB97A29D4409B00D01536 /* Preview Content */,
 			);
@@ -87,6 +86,7 @@
 		D01FB98429D4439F00D01536 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D01FB97629D4409500D01536 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
