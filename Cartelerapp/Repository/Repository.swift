@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+/*
 class MovieDetailViewModel: ObservableObject {
     @State var movies: [Movie] = []
     func moviesInTheatres() {
@@ -46,3 +46,4 @@ class MovieDetailViewModel: ObservableObject {
 struct Response: Codable {
 let results: [Movie]
 }
+*/
