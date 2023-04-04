@@ -15,7 +15,6 @@
 		D01FB98A29D4509900D01536 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Movie.swift */; };
 		D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* Cartelera.swift */; };
 		D0D1738629DC27060090F20D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738529DC27060090F20D /* Response.swift */; };
-		D0D1738829DC27A60090F20D /* RepositoryNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738729DC27A60090F20D /* RepositoryNew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		D01FB98929D4509900D01536 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D0D1738329DC25FB0090F20D /* Cartelera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cartelera.swift; sourceTree = "<group>"; };
 		D0D1738529DC27060090F20D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		D0D1738729DC27A60090F20D /* RepositoryNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryNew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 			children = (
 				D01FB98529D4505200D01536 /* Repository.swift */,
 				D01FB98729D4506400D01536 /* MoviesDataSource.swift */,
-				D0D1738729DC27A60090F20D /* RepositoryNew.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -176,7 +173,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0D1738829DC27A60090F20D /* RepositoryNew.swift in Sources */,
 				D01FB98A29D4509900D01536 /* Movie.swift in Sources */,
 				D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
