@@ -11,7 +11,22 @@ import SwiftUI
 struct CartelerappApp: App {
     var body: some Scene {
         WindowGroup {
-            Cartelera()
+
+            TabView {
+
+                NavigationView {
+                    Cartelera()
+                }
+                .tabItem {
+                    Label("Cartelera", systemImage: "popcorn")
+                }
+
+                Text("Buscador")
+                    .tabItem {
+                        Label("Buscador", systemImage: "magnifyingglass")
+                    }
+            }
+
         }
     }
 }

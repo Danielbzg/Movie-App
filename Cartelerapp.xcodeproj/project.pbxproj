@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C2695B8729E400620065D916 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8629E400620065D916 /* Dependencies.swift */; };
 		C2695B8929E401050065D916 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8829E401050065D916 /* RemoteImage.swift */; };
+		C2695B8B29E405710065D916 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8A29E405710065D916 /* MovieDetailView.swift */; };
 		D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB97429D4409500D01536 /* CartelerappApp.swift */; };
 		D01FB97929D4409B00D01536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97829D4409B00D01536 /* Assets.xcassets */; };
 		D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		C2695B8629E400620065D916 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		C2695B8829E401050065D916 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		C2695B8A29E405710065D916 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		D01FB97129D4409500D01536 /* Cartelerapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartelerapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01FB97429D4409500D01536 /* CartelerappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartelerappApp.swift; sourceTree = "<group>"; };
 		D01FB97829D4409B00D01536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D1738329DC25FB0090F20D /* Cartelera.swift */,
+				C2695B8A29E405710065D916 /* MovieDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				C2695B8729E400620065D916 /* Dependencies.swift in Sources */,
 				D01FB98A29D4509900D01536 /* Movie.swift in Sources */,
 				D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */,
+				C2695B8B29E405710065D916 /* MovieDetailView.swift in Sources */,
 				C2695B8929E401050065D916 /* RemoteImage.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
 				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
