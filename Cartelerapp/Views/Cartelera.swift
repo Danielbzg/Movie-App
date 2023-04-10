@@ -23,7 +23,7 @@ struct Cartelera: View {
                         ForEach(movies) {
                             MovieItem in VStack{
                                 ZStack{
-                                    AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(MovieItem.posterPath)")!) { image in
+                                    AsyncImage(url: RemoteImage.movieImage(path: MovieItem.posterPath)) { image in
                                         image.resizable()
                                             .aspectRatio(contentMode: .fit)
                                         } placeholder: {
@@ -93,7 +93,7 @@ struct Cartelera: View {
 
         Task {
             do {
-                let movies = try await Repository().moviesInTheatres()
+                let movies = try await Dependencies.repository.moviesInTheatres()
                 print(movies)
                 self.movies = movies
             } catch {
