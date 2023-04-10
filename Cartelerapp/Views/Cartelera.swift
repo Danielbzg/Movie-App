@@ -8,24 +8,40 @@
 import SwiftUI
 
 struct Cartelera: View {
+
     @State private var movies: [Movie] = []
 
     var body: some View {
+
         ScrollView(.vertical) {
+
             LazyVGrid(columns: [GridItem(.flexible(minimum:90), spacing: 5), GridItem(.flexible(minimum:150), spacing: 0)], content:  {
-                ForEach(movies) {
-                    MovieItem in VStack{
+
+                ForEach(movies) { MovieItem in
+
+                    VStack{
+
                         NavigationLink {
+
                             MovieDetailView(movie: MovieItem)
+
                         } label: {
+
                             ZStack{
+
                                 AsyncImage(url: RemoteImage.movieImage(path: MovieItem.posterPath)) { image in
-                                    image.resizable()
+                                    image
+                                        .resizable()
                                         .aspectRatio(contentMode: .fit)
+
                                 } placeholder: {
+
                                     ProgressView()
-                                }   .frame(width: .infinity, height: 200)
-                                    .cornerRadius(8)
+
+                                }
+                                .frame(width: .infinity, height: 200)
+                                .cornerRadius(8)
+
                                 VStack{
                                     Spacer()
                                     Text(MovieItem.title)
@@ -39,8 +55,6 @@ struct Cartelera: View {
                                 }
                             }
                         }
-
-
                     }
                 }
             })//Espacios de los Posters y títulos
@@ -52,7 +66,6 @@ struct Cartelera: View {
 
     
     func moviesInTheatres() {
-
         Task {
             do {
                 let movies = try await Dependencies.repository.moviesInTheatres()
