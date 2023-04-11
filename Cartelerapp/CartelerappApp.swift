@@ -15,7 +15,7 @@ struct CartelerappApp: App {
             TabView {
 
                 NavigationView {
-                    Cartelera()
+                    CarteleraView()
                 }
                 .tabItem {
                     Label("Cartelera", systemImage: "popcorn")
@@ -25,6 +25,7 @@ struct CartelerappApp: App {
                     .tabItem {
                         Label("Buscador", systemImage: "magnifyingglass")
                     }
+            
             }
 
         }

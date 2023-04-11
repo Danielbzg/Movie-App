@@ -16,7 +16,7 @@
 		D01FB98629D4505200D01536 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98529D4505200D01536 /* Repository.swift */; };
 		D01FB98A29D4509900D01536 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Movie.swift */; };
 		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
-		D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* Cartelera.swift */; };
+		D0D1738429DC25FC0090F20D /* CarteleraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* CarteleraView.swift */; };
 		D0D1738629DC27060090F20D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738529DC27060090F20D /* Response.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		D01FB98529D4505200D01536 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D01FB98929D4509900D01536 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
-		D0D1738329DC25FB0090F20D /* Cartelera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cartelera.swift; sourceTree = "<group>"; };
+		D0D1738329DC25FB0090F20D /* CarteleraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarteleraView.swift; sourceTree = "<group>"; };
 		D0D1738529DC27060090F20D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +106,7 @@
 		D01FB98429D4439F00D01536 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D0D1738329DC25FB0090F20D /* Cartelera.swift */,
+				D0D1738329DC25FB0090F20D /* CarteleraView.swift */,
 				C2695B8A29E405710065D916 /* MovieDetailView.swift */,
 			);
 			path = Views;
@@ -184,7 +184,7 @@
 			files = (
 				C2695B8729E400620065D916 /* Dependencies.swift in Sources */,
 				D01FB98A29D4509900D01536 /* Movie.swift in Sources */,
-				D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */,
+				D0D1738429DC25FC0090F20D /* CarteleraView.swift in Sources */,
 				C2695B8B29E405710065D916 /* MovieDetailView.swift in Sources */,
 				C2695B8929E401050065D916 /* RemoteImage.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
