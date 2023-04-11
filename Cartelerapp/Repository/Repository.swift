@@ -20,7 +20,9 @@ enum MoviesAPI {
 
     enum Endpoint: String {
         case movies = "/3/movie/now_playing"
+        case moviesDetails = "/3/movie/"
     }
+    
 }
 
 
@@ -48,10 +50,26 @@ class Repository {
         let url: URL = url(.movies)
         print(url)
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"        
+        request.httpMethod = "GET"
         let response = try await URLSession.shared.data(for: request)
         let data: Data = response.0
-        let result = try decoder.decode(Response.self, from: data)
+        let result = try decoder.decode(ResponseMovies.self, from: data)
         return result.results
+    }
+    
+    private func urlMDetails(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
+        URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
+    }
+    
+    func moviesDetails(id: Int) async throws -> MovieDetails {
+        let url: URL = urlMDetails(.moviesDetails, idMovie: id)
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let response = try await URLSession.shared.data(for: request)
+        let data: Data = response.0
+        let result = try decoder.decode(ResponseMoviesDetails.self, from: data)
+        return result.results
+        
     }
 }

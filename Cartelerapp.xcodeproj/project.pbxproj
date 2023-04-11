@@ -15,6 +15,7 @@
 		D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */; };
 		D01FB98629D4505200D01536 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98529D4505200D01536 /* Repository.swift */; };
 		D01FB98A29D4509900D01536 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Movie.swift */; };
+		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
 		D0D1738429DC25FC0090F20D /* Cartelera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* Cartelera.swift */; };
 		D0D1738629DC27060090F20D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738529DC27060090F20D /* Response.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D01FB98529D4505200D01536 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D01FB98929D4509900D01536 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		D0D1738329DC25FB0090F20D /* Cartelera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cartelera.swift; sourceTree = "<group>"; };
 		D0D1738529DC27060090F20D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 		D01FB98329D4437E00D01536 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D038E88229E5A2F400F9936F /* MovieDetails.swift */,
 				D01FB98929D4509900D01536 /* Movie.swift */,
 				D0D1738529DC27060090F20D /* Response.swift */,
 			);
@@ -187,6 +190,7 @@
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
 				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
 				D0D1738629DC27060090F20D /* Response.swift in Sources */,
+				D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

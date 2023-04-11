@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Cartelera: View {
+struct CarteleraView: View {
 
     @State private var movies: [Movie] = []
 
@@ -15,21 +15,21 @@ struct Cartelera: View {
 
         ScrollView(.vertical) {
 
-            LazyVGrid(columns: [GridItem(.flexible(minimum:90), spacing: 5), GridItem(.flexible(minimum:150), spacing: 0)], content:  {
+            LazyVGrid(columns: [GridItem(.flexible(minimum:110), spacing: 1), GridItem(.flexible(minimum:150), spacing: 0)], content:  {
 
-                ForEach(movies) { MovieItem in
+                ForEach(movies) { movieItem in
 
                     VStack{
 
                         NavigationLink {
 
-                            MovieDetailView(movie: MovieItem)
+                            MovieDetailView(movie: movieItem)
 
                         } label: {
 
-                            ZStack{
+                            VStack(spacing: 0){
 
-                                AsyncImage(url: RemoteImage.movieImage(path: MovieItem.posterPath)) { image in
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -42,25 +42,24 @@ struct Cartelera: View {
                                 .frame(width: .infinity, height: 200)
                                 .cornerRadius(8)
 
-                                VStack{
-                                    Spacer()
-                                    Text(MovieItem.title)
-                                        .frame(width: 90, height: 50, alignment: .center)
-                                        .padding(0.2)
-                                        .font(.headline)
-                                        .multilineTextAlignment(.center)
-                                        .background(Color.gray)
-                                        .opacity(0.5)
-                                        .foregroundColor(Color.white)
-                                }
+                                
+                                Text(movieItem.title)
+                                    .frame(width: 140, height: 50, alignment: .center)
+                                    .padding(0.2)
+                                    .font(.headline)
+                                    .multilineTextAlignment(.center)
+                                    .background(Color(red: 21/255, green: 21/255, blue: 85/255))
+                                    .opacity(0.8)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(8)
                             }
                         }
                     }
                 }
             })//Espacios de los Posters y títulos
         }
-        .background(LinearGradient(colors: [Color.orange, Color.red], startPoint: .top, endPoint: .center))
-        .onAppear { moviesInTheatres() }
+        .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
+        .onAppear {moviesInTheatres()}
         .navigationTitle("CARTELERAAPP")
     }
 
@@ -80,6 +79,6 @@ struct Cartelera: View {
 
 struct Cartelera_Previews: PreviewProvider {
     static var previews: some View {
-        Cartelera()
+        CarteleraView()
     }
 }
