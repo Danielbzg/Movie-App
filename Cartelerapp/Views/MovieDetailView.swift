@@ -31,26 +31,47 @@ struct MovieDetailView: View {
                     
                     Button(action: {
                         Dependencies.repository.addMovieFavourite(movieToInsert: movie)
+                        print("Película añadida: \(movie)")
                     }, label: {
                         Text("Añadir a Favoritas")
+                            .padding(3)
                     })
+                        .frame(minWidth: 50)
+                        .background(.yellow)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                        
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
                 HStack {
+                    
                     Text("Valoración: ")
                     Text(String(movie.voteAverage))
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                    
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
                 HStack {
+                    
                     Text("Género: ")
                     Text(String(movie.genreIds[0]))
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                    
+                    Button(action: {
+                        print("Las películas favoritas son: \(Dependencies.repository.getMoviesFavourites())")
+                    }, label: {
+                        Text("Ver favoritas")
+                            .padding(3)
+                    })
+                        .frame(minWidth: 50)
+                        .background(.orange)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
                 VStack{
                         
