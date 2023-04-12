@@ -28,6 +28,12 @@ struct MovieDetailView: View {
                 HStack {
                     Text("Estreno: ")
                     Text(movie.releaseDate)
+                    
+                    Button(action: {
+                        Dependencies.repository.addMovieFavourite(movieToInsert: movie)
+                    }, label: {
+                        Text("Añadir a Favoritas")
+                    })
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))

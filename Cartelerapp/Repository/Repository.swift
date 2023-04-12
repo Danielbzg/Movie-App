@@ -27,6 +27,7 @@ enum MoviesAPI {
 
 
 class Repository {
+    var moviesFavourite: [Movie] { get {return self.moviesFavourite } set {}}
 
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -70,6 +71,14 @@ class Repository {
         let data: Data = response.0
         let result = try decoder.decode(ResponseMoviesDetails.self, from: data)
         return result.results
-        
     }
+    
+    func addMovieFavourite(movieToInsert: Movie) -> Void {
+        moviesFavourite.append(movieToInsert)
+    }
+    
+    /*func removeMovieFavourite(movieToInsert: Movie) -> [Movie] {
+        moviesFavourite.append(movieToInsert)
+        return moviesFavourite
+    }*/
 }
