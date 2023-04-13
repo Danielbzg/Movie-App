@@ -19,8 +19,8 @@ enum MoviesAPI {
     }
 
     enum Endpoint: String {
-        case movies = "/3/movie/now_playing"
-        case moviesDetails = "/3/movie/"
+        case moviesInTheatres = "/3/movie/now_playing"
+        case movieIndividual = "/3/movie/"
     }
     
 }
@@ -48,7 +48,7 @@ class Repository {
     }
 
     func moviesInTheatres() async throws -> [Movie] {
-        let url: URL = url(.movies)
+        let url: URL = url(.moviesInTheatres)
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -58,12 +58,27 @@ class Repository {
         return result.results
     }
     
+    public func getMoviesFavourites() -> [Movie] {
+        return self.moviesFavourite
+    }
+    
+    public func setMoviesFavourites(newMovies: [Movie]) {
+        self.moviesFavourite = newMovies
+    }
+    
+    public func addMovieFavourite(movieToInsert: Movie) -> [Movie] {
+        self.moviesFavourite.append(movieToInsert)
+        setMoviesFavourites(newMovies: self.moviesFavourite)
+        return self.moviesFavourite
+    }
+    
+    //Función para consultar en la API los Detalles de la película
     private func urlMDetails(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
     
     func moviesDetails(id: Int) async throws -> MovieDetails {
-        let url: URL = urlMDetails(.moviesDetails, idMovie: id)
+        let url: URL = urlMDetails(.movieIndividual, idMovie: id)
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -73,17 +88,19 @@ class Repository {
         return result.results
     }
     
-    public func addMovieFavourite(movieToInsert: Movie) -> [Movie] {
-        self.moviesFavourite.append(movieToInsert)
-        setMoviesFavourites(newMovies: self.moviesFavourite)
-        return self.moviesFavourite
+    //Función para consultar en la API los Créditos
+    private func urlMCredits(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
+        URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "/credits?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
     
-    public func getMoviesFavourites() -> [Movie] {
-        return self.moviesFavourite
-    }
-    
-    public func setMoviesFavourites(newMovies: [Movie]) {
-        self.moviesFavourite = newMovies
+    func moviesCredits(id: Int) async throws -> MovieCredits {
+        let url: URL = urlMCredits(.movieIndividual, idMovie: id)
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let response = try await URLSession.shared.data(for: request)
+        let data: Data = response.0
+        let result = try decoder.decode(ResponseMoviesCredits.self, from: data)
+        return result.results
     }
 }

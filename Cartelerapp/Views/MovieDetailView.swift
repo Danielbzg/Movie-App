@@ -31,7 +31,7 @@ struct MovieDetailView: View {
                     
                     Button(action: {
                         Dependencies.repository.addMovieFavourite(movieToInsert: movie)
-                        print("Película añadida: \(movie)")
+                        print("Película a añadir: \(movie)")
                     }, label: {
                         Text("Añadir a Favoritas")
                             .padding(3)

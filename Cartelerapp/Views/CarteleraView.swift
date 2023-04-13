@@ -28,8 +28,15 @@ struct CarteleraView: View {
 
                         } label: {
 
-                            VStack(spacing: 0){
-
+                            VStack(spacing: 2){
+                                Text(String(movieItem.releaseDate))
+                                    .frame(width: 140, height: 20, alignment: .center)
+                                    .padding(0.2)
+                                    .font(.headline)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(8)
+                                
                                 AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
                                     image
                                         .resizable()
@@ -40,20 +47,21 @@ struct CarteleraView: View {
                                     ProgressView()
 
                                 }
-                                .frame(width: .infinity, height: 200)
+                                .frame(maxWidth: .infinity, maxHeight: 200)
                                 .cornerRadius(8)
-
                                 
                                 Text(movieItem.title)
                                     .frame(width: 140, height: 50, alignment: .center)
                                     .padding(0.2)
                                     .font(.headline)
                                     .multilineTextAlignment(.center)
-                                    .background(Color(red: 21/255, green: 21/255, blue: 85/255))
-                                    .opacity(0.8)
                                     .foregroundColor(Color.white)
                                     .cornerRadius(8)
+                                
                             }
+                            .frame(width: 150, height: 275, alignment: .trailing)
+                            .background(Color(red: 21/255, green: 21/255, blue: 85/255).opacity(0.8))
+                                .cornerRadius(8)
                         }
                     }
                 }
@@ -61,7 +69,7 @@ struct CarteleraView: View {
         }
         .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
         .onAppear {moviesInTheatres()}
-        .navigationTitle("CARTELERAAPP")
+        .navigationTitle("CARTELERAPP")
     }
 
     
