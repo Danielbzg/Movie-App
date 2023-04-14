@@ -10,6 +10,13 @@ import SwiftUI
 struct MovieDetailView: View {
 
     let movie: Movie
+    @State var isFavorite: Bool
+    @State var credits: String = ""
+
+    init(movie: Movie) {
+        self.movie = movie
+        self.isFavorite = movie.isFavorite
+    }
 
     var body: some View {
 
@@ -30,10 +37,16 @@ struct MovieDetailView: View {
                     Text(movie.releaseDate)
                     
                     Button(action: {
-                        Dependencies.repository.addMovieFavourite(movieToInsert: movie)
+                        if isFavorite {
+                            Dependencies.repository.removeMovieFromFavourite(movie)
+                        } else {
+                            Dependencies.repository.addMovieFavourite(movie)
+                        }
+                        isFavorite.toggle()
+
                         print("Película a añadir: \(movie)")
                     }, label: {
-                        Text("Añadir a Favoritas")
+                        Text(isFavorite ? "Eliminar de favoritos" : "Añadir a Favoritas")
                             .padding(3)
                     })
                         .frame(minWidth: 50)
@@ -60,7 +73,7 @@ struct MovieDetailView: View {
                     Text(String(movie.genreIds[0]))
                     
                     Button(action: {
-                        print("Las películas favoritas son: \(Dependencies.repository.getMoviesFavourites())")
+                        print("Las películas favoritas son: \(Dependencies.repository.favouritesMovies())")
                     }, label: {
                         Text("Ver favoritas")
                             .padding(3)
