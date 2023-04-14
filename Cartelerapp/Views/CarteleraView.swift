@@ -10,7 +10,6 @@ import SwiftUI
 struct CarteleraView: View {
 
     @State private var movies: [Movie] = []
-    
 
     var body: some View {
 

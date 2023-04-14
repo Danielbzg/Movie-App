@@ -28,6 +28,21 @@ enum MoviesAPI {
 
 class Repository {
     @State private var moviesFavourite: [Movie] = []
+    
+    //Getter, setter y añadir película a favorita
+    public func getMoviesFavourites() -> [Movie] {
+        return self.moviesFavourite
+    }
+    
+    public func setMoviesFavourites(newMovies: [Movie]) {
+        self.moviesFavourite = newMovies
+    }
+    
+    public func addMovieFavourite(movieToInsert: Movie) -> [Movie] {
+        self.moviesFavourite.append(movieToInsert)
+        setMoviesFavourites(newMovies: self.moviesFavourite)
+        return self.moviesFavourite
+    }
 
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -42,7 +57,8 @@ class Repository {
         self.domain = domain
         self.apiKey = apiKey
     }
-
+    
+    //Función para la creación de url y consultar películas en cartelera
     private func url(_ endpoint: MoviesAPI.Endpoint) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
@@ -56,20 +72,6 @@ class Repository {
         let data: Data = response.0
         let result = try decoder.decode(ResponseMovies.self, from: data)
         return result.results
-    }
-    
-    public func getMoviesFavourites() -> [Movie] {
-        return self.moviesFavourite
-    }
-    
-    public func setMoviesFavourites(newMovies: [Movie]) {
-        self.moviesFavourite = newMovies
-    }
-    
-    public func addMovieFavourite(movieToInsert: Movie) -> [Movie] {
-        self.moviesFavourite.append(movieToInsert)
-        setMoviesFavourites(newMovies: self.moviesFavourite)
-        return self.moviesFavourite
     }
     
     //Función para consultar en la API los Detalles de la película
@@ -88,7 +90,7 @@ class Repository {
         return result.results
     }
     
-    //Función para consultar en la API los Créditos
+    //Función para creación de url y consultar los Créditos de la película
     private func urlMCredits(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "/credits?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
