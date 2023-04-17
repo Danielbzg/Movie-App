@@ -34,7 +34,10 @@ struct MovieDetailView: View {
                 
                 HStack {
                     Text("Estreno: ")
+                    
                     Text(movie.releaseDate)
+                    
+                    Spacer()
                     
                     Button(action: {
                         if isFavorite {
@@ -46,14 +49,22 @@ struct MovieDetailView: View {
 
                         print("Película a añadir: \(movie)")
                     }, label: {
-                        Text(isFavorite ? "Eliminar de favoritos" : "Añadir a Favoritas")
-                            .padding(3)
+                        HStack{
+                            
+                            Image(isFavorite ? "starFav" : "starAdd")
+                                .aspectRatio(contentMode: .fit)
+                            
+                            Text(isFavorite ? "Eliminar" : "Añadir")
+                    
+                        } .padding([.leading, .trailing], 5)
+                        
                     })
-                        .frame(minWidth: 50)
-                        .background(.yellow)
+                        .frame(minWidth: 30, minHeight: 45)
+                        .background(.gray)
                         .foregroundColor(.black)
                         .cornerRadius(8)
                         
+                    Spacer()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
