@@ -18,7 +18,7 @@ struct CartelerappApp: App {
                     CarteleraView()
                 }
                 .tabItem {
-                    Label("Cartelera", systemImage: "popcorn")
+                    Label("Cartelera", systemImage: "ticket")
                 }
 
                 Text("Buscador")
@@ -27,7 +27,6 @@ struct CartelerappApp: App {
                     }
             
             }
-
         }
     }
 }
