@@ -21,7 +21,9 @@ struct CartelerappApp: App {
                     Label("Cartelera", systemImage: "ticket")
                 }
 
-                Text("Buscador")
+                NavigationView {
+                    SearchView()
+                }
                     .tabItem {
                         Label("Buscador", systemImage: "magnifyingglass")
                     }

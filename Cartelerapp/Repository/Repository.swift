@@ -19,8 +19,9 @@ enum MoviesAPI {
     }
 
     enum Endpoint: String {
-        case moviesInTheatres = "/3/movie/now_playing"
         case movieIndividual = "/3/movie/"
+        case moviesInTheatres = "/3/movie/now_playing"
+        case movieSearch = "/3/search/movie"
     }
     
 }
@@ -97,7 +98,8 @@ class Repository {
         let result = try decoder.decode(ResponseMovies.self, from: data)
         return result.results
     }
-
+    
+    //Función para consultar en la API los Detalles de la película
     public func moviesDetails(id: Int) async throws -> MovieDetails {
         let url: URL = urlMDetails(.movieIndividual, idMovie: id)
         print(url)
@@ -108,7 +110,8 @@ class Repository {
         let result = try decoder.decode(ResponseMoviesDetails.self, from: data)
         return result.results
     }
-
+    
+    //Función para consultar en la API los Créditos de la película
     public func moviesCredits(id: Int) async throws -> MovieCredits {
         let url: URL = urlMCredits(.movieIndividual, idMovie: id)
         print(url)
@@ -120,14 +123,32 @@ class Repository {
         return result.results
     }
     
-    //Función para consultar en la API los Detalles de la película
+    //Función para buscar películas
+    public func searchMovies(searchText: String) async throws -> [Movie] {
+        let url: URL = urlSearchMovies(.movieSearch, text: searchText)
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let response = try await URLSession.shared.data(for: request)
+        let data: Data = response.0
+        let result = try decoder.decode(ResponseMovies.self, from: data)
+        return result.results
+    }
+    
+    //Función para la creación de la url de los Detalles de la película
     private func urlMDetails(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
     
-    //Función para creación de url y consultar los Créditos de la película
+    //Función para creación de la url para consultar los Créditos de la película
     private func urlMCredits(_ endpoint: MoviesAPI.Endpoint, idMovie: Int) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "\(idMovie)" + "/credits?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
-
+    
+    //Función para creación de url del buscador
+    private func urlSearchMovies(_ endpoint: MoviesAPI.Endpoint, text: String) -> URL {
+        URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&query=\(text)")!
+    }
+    
+    //.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed
 }
