@@ -25,7 +25,7 @@ struct MovieDetailView: View {
                 VStack {
                     
                     Text(movie.title)
-                    AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath)) { image in image.resizable()
+                    AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "PosterDefault.jpg")) { image in image.resizable()
                                             .aspectRatio(contentMode: .fit)
                         } placeholder: {
                             ProgressView()

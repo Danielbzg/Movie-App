@@ -47,7 +47,7 @@ struct SearchView: View {
                                     .foregroundColor(Color.white)
                                     .cornerRadius(8)
                                 
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault.jpg")) { image in
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -74,9 +74,11 @@ struct SearchView: View {
                             .cornerRadius(8)
                         }
                     }
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
+        .navigationTitle("Buscador")
     }
     
     func searchMoviesView() {
@@ -92,3 +94,10 @@ struct SearchView: View {
         }
     }
 }
+
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView()
+    }
+}
+
