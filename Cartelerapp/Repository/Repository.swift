@@ -112,20 +112,24 @@ class Repository {
     }
     
     //Función para consultar en la API los Créditos de la película
-    public func moviesCredits(id: Int) async throws -> MovieCredits {
+    public func moviesCredits(id: Int) async throws -> Credits {
         let url: URL = urlMCredits(.movieIndividual, idMovie: id)
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let response = try await URLSession.shared.data(for: request)
         let data: Data = response.0
-        let result = try decoder.decode(ResponseMoviesCredits.self, from: data)
-        return result.results
+        let result = try decoder.decode(MovieCredits.self, from: data)
+
+        let director = result.crew.first { $0.job.lowercased() == "director" }
+        let mainCharacters = result.cast
+
+        return .init(director: director, mainCharacters: mainCharacters)
     }
     
     //Función para buscar películas
     public func searchMovies(searchText: String) async throws -> [Movie] {
-        let url: URL = urlSearchMovies(.movieSearch, text: searchText)
+        guard let url: URL = urlSearchMovies(.movieSearch, text: searchText) else { return [] }
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -146,9 +150,17 @@ class Repository {
     }
     
     //Función para creación de url del buscador
-    private func urlSearchMovies(_ endpoint: MoviesAPI.Endpoint, text: String) -> URL {
-        URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&query=\(text)")!
+    private func urlSearchMovies(_ endpoint: MoviesAPI.Endpoint, text: String) -> URL? {
+        var urlComponents = URLComponents(string: domain.rawValue + endpoint.rawValue)
+        urlComponents?.queryItems = [
+            .init(name: "api_key", value: apiKey.rawValue),
+            .init(name: "query", value: text)
+        ]
+        return urlComponents?.url
     }
-    
-    //.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed
+}
+
+struct Credits {
+    let director: Crew?
+    let mainCharacters: [Cast]
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieDetailView: View {
     
-    @State private var movieCredits: MovieCredits = MovieCredits(id: 0, cast: [], crew: [])
+    @State private var movieCredits: Credits? = nil
     let movie: Movie
     @State var isFavorite: Bool
     @State var credits: String = ""
@@ -97,13 +97,15 @@ struct MovieDetailView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                
-                HStack {
-                    Text("Director: ")
-                    Text(String(movieCredits.id))
+
+                if let director = movieCredits?.director {
+                    HStack {
+                        Text("Director: ")
+                        Text(String(director.name))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
                 VStack{
                         
@@ -118,14 +120,16 @@ struct MovieDetailView: View {
             }
         }
         .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
-        .onAppear { movieCreditsview() }
+        .onAppear { loadCredits() }
     }
-    func movieCreditsview() {
+
+    func loadCredits() {
+
         Task {
             do {
-                let movieCreditsFunc = try await Dependencies.repository.moviesCredits(id: movie.id)
-                print(movieCreditsFunc)
-                self.movieCredits = movieCreditsFunc
+                let movieCredits = try await Dependencies.repository.moviesCredits(id: movie.id)
+                print(movieCredits)
+                self.movieCredits = movieCredits
             } catch {
                 print(error)
             }

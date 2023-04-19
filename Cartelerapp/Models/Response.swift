@@ -14,7 +14,3 @@ struct ResponseMovies: Codable {
 struct ResponseMoviesDetails: Codable {
     let results: MovieDetails
 }
-
-struct ResponseMoviesCredits: Codable {
-    let results: MovieCredits
-}
