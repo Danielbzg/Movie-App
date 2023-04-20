@@ -21,12 +21,12 @@ struct MovieDetailView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
+        VStack {
             ScrollView(.vertical) {
                 ZStack {
-                    AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "PosterDefault.jpg")) { image in image.resizable()
+                    AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "PosterDefault")) { image in image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .mask(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red, Color.red, Color.blue.opacity(0)]), startPoint: .top, endPoint: .bottom))
+                            .mask(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red, Color.red, Color.main.opacity(0)]), startPoint: .top, endPoint: .bottom))
                     } placeholder: {
                         ProgressView()
                     } //Fin imagen
@@ -34,55 +34,69 @@ struct MovieDetailView: View {
                     VStack{
                         Spacer()
                         Text(movie.title)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.title)
                             .font(.custom("SF Pro Display", size: 28))
                     }
                     
                 }
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
                 
-                HStack {
+                HStack(alignment: .center, spacing: 5) {
                     HStack {
-                        Text("Estreno: ")
+                        Text("Estreno ")
                         
                         Text(movie.releaseDate)
                     }
-                    Spacer()
-                    Text("·")
-                    Spacer()
+                    
+                    Text(" · ")
+                    
                     HStack {
                         
-                        Text("Duración: ")
+                        Text("Duración ")
+                            
                         Text(String(movie.voteAverage))
+                            
                         
                     }
+                    
                     Spacer()
                 }
+                .foregroundColor(Color.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
                 
                 //Géneros de la película
                 HStack {
                     ZStack{
                         Rectangle()
-                            .background(.blue)
-                            .cornerRadius(8)
-                    Text(String(movie.genreIds[0]))
+                            .fill(Color.backgroundButton)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.secondary, lineWidth: 0.5)
+                            )
+                            .cornerRadius(20)
+
+                        Text(String(movie.genreIds[0]))
                             .padding(3)
-                            .foregroundColor(.gray)
-                        }
+                            .foregroundColor(Color.secondary)
+                    }
                     
                     ZStack{
                         Rectangle()
-                            .background(.blue)
-                            .cornerRadius(8)
-                    Text(String(movie.genreIds[1]))
+                            .fill(Color.backgroundButton)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.secondary, lineWidth: 0.5)
+                            )
+                            .cornerRadius(20)
+                        
+                        Text(String(movie.genreIds[1]))
                             .padding(3)
-                            .foregroundColor(.gray)
-                        }
+                            .foregroundColor(Color.secondary)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                
                 
                 //Botones Favoritos - Pendientes...
                 HStack{
@@ -111,40 +125,65 @@ struct MovieDetailView: View {
                         .foregroundColor(.black)
                         .cornerRadius(8)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
                 
-                
-                VStack{
-                    
+                VStack(alignment: .leading, spacing: 5) {
                     Text("Sinopsis")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.custom("Courier", fixedSize: 20))
+                        .foregroundColor(Color.secondary)
                     
                     Text(movie.overview)
-                    
-                }.frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                        .foregroundColor(Color.longText)
+                }
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
                 
                 if let director = movieCredits?.director {
-                    HStack {
-                        Text("Director: ")
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Director")
+                            .foregroundColor(Color(red: 121/255, green: 128/255, blue: 176/255))
                         Text(String(director.name))
+                            .foregroundColor(Color.white)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                    .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
                 }
                 
-                VStack{
+                VStack(alignment: .leading, spacing: 5) {
                     Text("Reparto")
+                        .foregroundColor(Color.secondary)
                     
+                    ScrollView(.horizontal){
+                        HStack{
+                            if let mainCharacters = movieCredits?.mainCharacters {
+                                ForEach(mainCharacters) { character in
+                                    VStack{
+                                        AsyncImage(url: RemoteImage.movieImage(path: character.profilePath ?? "posterDefault")) { image in image.resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 85, height: 85)
+                                                .cornerRadius(25)
+                                        } placeholder: {
+                                            ProgressView()
+                                        } //Fin imagen
+                                        
+                                        Text(character.name)
+                                            .foregroundColor(Color.white)
+                                        
+                                        Text(character.character)
+                                            .foregroundColor(Color.gray)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .frame(width: .infinity, height: 150, alignment: .trailing)
                 }
-                
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
             }
-        }
-        .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
-        .onAppear { loadCredits() }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+        }.background(Color.main)
+            .onAppear { loadCredits() }
     }
     
     func loadCredits() {
@@ -159,5 +198,5 @@ struct MovieDetailView: View {
             }
         }
     }
+    
 }
-

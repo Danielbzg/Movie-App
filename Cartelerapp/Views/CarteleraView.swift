@@ -36,10 +36,11 @@ struct CarteleraView: View {
                                     .foregroundColor(Color.white)
                                     .cornerRadius(8)
                                 
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault.jpg")) { image in
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault")) { image in
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(25)
 
                                 } placeholder: {
 
