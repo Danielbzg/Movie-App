@@ -49,6 +49,10 @@ extension Color {
     static let backgroundButton = Color(red: 255/255, green: 255/255, blue: 255/255, opacity: 0.1)
 }
 
+extension Font {
+    
+}
+
 
 class Repository {
 
@@ -108,15 +112,21 @@ class Repository {
     }
     
     //Función para consultar en la API los Detalles de la película
-    public func moviesDetails(id: Int) async throws -> MovieDetails {
+    public func moviesDetails(id: Int) async throws -> Details {
         let url: URL = urlMDetails(.movieIndividual, idMovie: id)
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let response = try await URLSession.shared.data(for: request)
         let data: Data = response.0
-        let result = try decoder.decode(ResponseMoviesDetails.self, from: data)
-        return result.results
+        let result = try decoder.decode(MovieDetails.self, from: data)
+        let duration = result.runtime
+        var generos: [String] = []
+        for genre in result.genres {
+            let genreName = genre.name
+            generos.append(genreName)
+        }
+        return .init(duration: duration, generos: generos)
     }
     
     //Función para consultar en la API los Créditos de la película
@@ -171,4 +181,9 @@ class Repository {
 struct Credits {
     let director: Crew?
     let mainCharacters: [Cast]
+}
+
+struct Details {
+    let duration: Int
+    let generos: [String]
 }
