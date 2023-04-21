@@ -37,7 +37,10 @@ struct MovieDetailView: View {
                         Spacer()
                         Text(movie.title)
                             .foregroundColor(Color.title)
-                            .font(Font.custom("SF Pro Normal", size: 28))
+                            .font(.system(size: 28, weight: .bold, design: .default))
+                            .multilineTextAlignment(.center)
+                        //.font(Font.custom("SF Pro Display", size: 28))
+                        
                     }
                     
                 }
@@ -76,123 +79,130 @@ struct MovieDetailView: View {
                                 }
                             }
                         }
-                                  )}
-                                  }
-                                    .frame(maxWidth: 120, alignment: .center)
-                                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                                  
-                                  //Botones Favoritos - Pendientes...
-                                  HStack{
-                            Button(action: {
-                                if isFavorite {
-                                    Dependencies.repository.removeMovieFromFavourite(movie)
-                                } else {
-                                    Dependencies.repository.addMovieFavourite(movie)
-                                }
-                                isFavorite.toggle()
-                                
-                                print("Película a añadir: \(movie)")
-                            }, label: {
-                                HStack{
-                                    
-                                    Image(isFavorite ? "starFav" : "starAdd")
-                                        .aspectRatio(contentMode: .fit)
-                                    
-                                    Text(isFavorite ? "Eliminar" : "Añadir")
-                                    
-                                } .padding([.leading, .trailing], 5)
-                                
-                            })
-                                .frame(minWidth: 30, minHeight: 45)
-                                .background(.gray)
-                                .foregroundColor(.black)
-                                .cornerRadius(8)
+                        )}
+                }
+                .frame(maxWidth: 120, alignment: .center)
+                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                
+                //Botones Favoritos - Pendientes...
+                HStack{
+                    Button(action: {
+                        if isFavorite {
+                            Dependencies.repository.removeMovieFromFavourite(movie)
+                        } else {
+                            Dependencies.repository.addMovieFavourite(movie)
                         }
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                                  
-                                  
-                                  VStack(alignment: .leading, spacing: 5) {
-                            Text("Sinopsis")
-                                .foregroundColor(Color.secondary)
+                        isFavorite.toggle()
+                        
+                        print("Película a añadir: \(movie)")
+                    }, label: {
+                        HStack{
                             
-                            Text(movie.overview)
-                                .foregroundColor(Color.longText)
-                        }
-                                    .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                                  
-                                  if let director = movieCredits?.director {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Director")
-                                    .foregroundColor(Color(red: 121/255, green: 128/255, blue: 176/255))
-                                Text(String(director.name))
-                                    .foregroundColor(Color.white)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                        }
-                                  
-                                  VStack(alignment: .leading, spacing: 5) {
-                            Text("Reparto")
-                                .foregroundColor(Color.secondary)
+                            Image(isFavorite ? "starFav" : "starAdd")
+                                .aspectRatio(contentMode: .fit)
                             
-                            ScrollView(.horizontal){
-                                HStack{
-                                    if let mainCharacters = movieCredits?.mainCharacters {
-                                        ForEach(mainCharacters) { character in
-                                            VStack{
-                                                AsyncImage(url: RemoteImage.movieImage(path: character.profilePath ?? "posterDefault")) { image in image.resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 85, height: 85)
-                                                        .cornerRadius(25)
-                                                } placeholder: {
-                                                    ProgressView()
-                                                } //Fin imagen
-                                                
-                                                Text(character.name)
-                                                    .foregroundColor(Color.white)
-                                                
-                                                Text(character.character)
-                                                    .foregroundColor(Color.gray)
-                                            }
-                                        }
+                            Text(isFavorite ? "Eliminar" : "Añadir")
+                            
+                        } .padding([.leading, .trailing], 5)
+                        
+                    })
+                        .frame(minWidth: 30, minHeight: 45)
+                        .background(.gray)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+                
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Sinopsis")
+                        .foregroundColor(Color.secondary)
+                    
+                    Text(movie.overview)
+                        .foregroundColor(Color.longText)
+                }
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
+                
+                if let director = movieCredits?.director {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Director")
+                            .foregroundColor(Color(red: 121/255, green: 128/255, blue: 176/255))
+                        Text(String(director.name))
+                            .foregroundColor(Color.white)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
+                }
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Reparto")
+                        .foregroundColor(Color.secondary)
+                    
+                    ScrollView(.horizontal){
+                        HStack{
+                            if let mainCharacters = movieCredits?.mainCharacters {
+                                ForEach(mainCharacters) { character in
+                                    VStack{
+                                        AsyncImage(url: RemoteImage.movieImage(path: character.profilePath ?? "posterDefault")) { image in image.resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 85, height: 85)
+                                                .cornerRadius(25)
+                                        } placeholder: {
+                                            ProgressView()
+                                        } //Fin imagen
+                                        
+                                        Text(character.name)
+                                            .foregroundColor(Color.white)
+                                        
+                                        Text(character.character)
+                                            .foregroundColor(Color.gray)
                                     }
                                 }
                             }
-                            .frame(width: .infinity, height: 150, alignment: .trailing)
                         }
-                                    .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                                  }
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                                  }.background(Color.main)
-                                    .onAppear {
-                            loadCredits()
-                            loadMovieDetails()
-                        }
-                                  }
-                                  
-                                  func loadCredits() {
-                            Task {
-                                do {
-                                    let movieCredits = try await Dependencies.repository.moviesCredits(id: movie.id)
-                                    print(movieCredits)
-                                    self.movieCredits = movieCredits
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        }
-                                  
-                                  func loadMovieDetails() {
-                            Task {
-                                do {
-                                    let movieDetails = try await Dependencies.repository.moviesDetails(id: movie.id)
-                                    print(movieDetails)
-                                    self.movieDetails = movieDetails
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        }
-                                  }
+                    }
+                    .frame(width: .infinity, height: 150, alignment: .trailing)
+                }
+                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+        }.background(Color.main)
+            .onAppear {
+                loadCredits()
+                loadMovieDetails()
+            }
+    }
+    
+    func loadCredits() {
+        Task {
+            do {
+                let movieCredits = try await Dependencies.repository.moviesCredits(id: movie.id)
+                print(movieCredits)
+                self.movieCredits = movieCredits
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func loadMovieDetails() {
+        Task {
+            do {
+                //print("El valor de movie.id: \(movie.id)")
+                let movieDetails = try await Dependencies.repository.moviesDetails(id: movie.id)
+                print(movieDetails)
+                self.movieDetails = movieDetails
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
+
+struct MovieDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        MovieDetailView(movie: Movie(id: 502356, title: "The Super Mario Bros. Movie", posterPath: Optional("/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"), overview: "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.", releaseDate: "2023-04-05", voteAverage: 7.5, genreIds: [16, 12, 10751, 14, 35]))
+    }
+}

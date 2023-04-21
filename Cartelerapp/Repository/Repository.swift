@@ -49,9 +49,11 @@ extension Color {
     static let backgroundButton = Color(red: 255/255, green: 255/255, blue: 255/255, opacity: 0.1)
 }
 
-extension Font {
-    
-}
+/*extension Font {
+    static func SFProDisplayFont(size: CGFloat) -> Font {
+        return Font.custom("SFPRODISPLAYBOLD", size: size)
+    }
+}*/
 
 
 class Repository {

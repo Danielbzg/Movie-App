@@ -40,14 +40,14 @@ struct Genres: Codable, Identifiable {
 
 struct ProductCompany: Codable, Identifiable {
     let id: Int
-    let logoPath: String
-    let name: String
-    let originCountry: String
+    let logoPath: String?
+    let name: String?
+    let originCountry: String?
 }
 
 struct ProductCountry: Codable {
-    let iso31661: String
-    let name: String
+    let iso31661: String?
+    let name: String?
 }
 
 struct SpokenLanguages: Codable {
