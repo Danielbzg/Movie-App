@@ -27,19 +27,13 @@ struct CarteleraView: View {
 
                         } label: {
 
-                            VStack(spacing: 2){
-                                Text(String(movieItem.releaseDate))
-                                    .frame(width: 140, height: 20, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
+                            VStack(spacing: 0.2){
                                 
                                 AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault.jpg")) { image in
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(25)
 
                                 } placeholder: {
 
@@ -50,23 +44,26 @@ struct CarteleraView: View {
                                 .cornerRadius(8)
                                 
                                 Text(movieItem.title)
-                                    .frame(width: 140, height: 50, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
+                                    .frame(width: 120, height: 40, alignment: .init(horizontal: .leading, vertical: .center))
+                                    .font(.system(size: 15, weight: .bold, design: .default))
+                                    .foregroundColor(Color.longText)
+                                
+                                Text(Dependencies.repository.convertFormatDate(dateInsert: movieItem.releaseDate))
+                                    .frame(width: 120, height: 20, alignment: .init(horizontal: .leading, vertical: .center))
+                                    .font(.system(size: 13, weight: .regular))
+                                    .foregroundColor(Color.secondary)
+                                    
                                 
                             }
-                            .frame(width: 150, height: 275, alignment: .trailing)
-                            .background(Color(red: 21/255, green: 21/255, blue: 85/255).opacity(0.8))
-                                .cornerRadius(8)
+                            .multilineTextAlignment(.leading)
+                            .frame(width: 150, height: 275)
                         }
-                    }
+                    }.padding(.init(top:3, leading:2, bottom:3, trailing: 2))
+                        
                 }
             })//Espacios de los Posters y títulos
         }
-        .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
+        .background(Color.main)
         .onAppear {moviesInTheatres()}
         .navigationTitle("CARTELERAPP")
     }
