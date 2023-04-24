@@ -83,6 +83,17 @@ class Repository {
         URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
 
+    public func convertFormatDate(dateInsert: String) -> String{
+        var dateconverted = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = dateFormatter.date(from: dateInsert) {
+            dateFormatter.dateFormat = "dd MMMM yyyy"
+            dateconverted = dateFormatter.string(from: date)
+            return dateconverted}
+        return dateconverted
+    }
+    
     //Getter, setter y añadir película a favorita
     public func favouritesMovies() -> [Int] {
         UserDefaults.standard.favoritesMovies

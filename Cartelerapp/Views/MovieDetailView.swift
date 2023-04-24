@@ -48,13 +48,14 @@ struct MovieDetailView: View {
                 
                 HStack(alignment: .center, spacing: 5) {
                     
-                    Text("Estreno \(movie.releaseDate)")
+                    Text("Estreno \(Dependencies.repository.convertFormatDate(dateInsert: movie.releaseDate))")
                     
                     Text(" · ")
                     
                     Text("Duración \(String(movieDetails?.duration ?? 0)) min.")
                     
                 }
+                .font(.system(size: 15, weight: .regular, design: .default))
                 .foregroundColor(Color.secondary)
                 .frame(maxWidth: .infinity)
                 .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
@@ -62,7 +63,7 @@ struct MovieDetailView: View {
                 //Géneros de la película
                 HStack {
                     if let generos = movieDetails?.generos {
-                        LazyVGrid(columns: [GridItem(.flexible(minimum:110), spacing: 3), GridItem(.flexible(minimum:150), spacing: 3)], content:  {
+                        LazyVGrid(columns: [GridItem(.flexible(minimum:115), spacing: 16), GridItem(.flexible(minimum:115), spacing: 16)], content:  {
                             ForEach(generos, id: \.self) { genero in
                                 ZStack{
                                     Rectangle()
@@ -81,6 +82,7 @@ struct MovieDetailView: View {
                         }
                         )}
                 }
+                .font(.system(size: 14, weight: .regular, design: .default))
                 .frame(maxWidth: 120, alignment: .center)
                 .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
