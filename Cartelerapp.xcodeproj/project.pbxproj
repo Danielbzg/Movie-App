@@ -17,10 +17,21 @@
 		D01FB98A29D4509900D01536 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Movie.swift */; };
 		D025E7E129ED8709009B659D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025E7E029ED8709009B659D /* SearchView.swift */; };
 		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
+		D0443D0A29F7DC4B002313ED /* CartelerappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0443D0929F7DC4B002313ED /* CartelerappTests.swift */; };
 		D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D69429E8373E00EE13CE /* MovieCredits.swift */; };
 		D0D1738429DC25FC0090F20D /* CarteleraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* CarteleraView.swift */; };
 		D0D1738629DC27060090F20D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738529DC27060090F20D /* Response.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0443D0B29F7DC4B002313ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D01FB96929D4409500D01536 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D01FB97029D4409500D01536;
+			remoteInfo = Cartelerapp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C2695B8629E400620065D916 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
@@ -34,6 +45,8 @@
 		D01FB98929D4509900D01536 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D025E7E029ED8709009B659D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		D0443D0729F7DC4B002313ED /* CartelerappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartelerappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0443D0929F7DC4B002313ED /* CartelerappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartelerappTests.swift; sourceTree = "<group>"; };
 		D095D69429E8373E00EE13CE /* MovieCredits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCredits.swift; sourceTree = "<group>"; };
 		D0D1738329DC25FB0090F20D /* CarteleraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarteleraView.swift; sourceTree = "<group>"; };
 		D0D1738529DC27060090F20D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -47,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0443D0429F7DC4B002313ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -54,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				D01FB97329D4409500D01536 /* Cartelerapp */,
+				D0443D0829F7DC4B002313ED /* CartelerappTests */,
 				D01FB97229D4409500D01536 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				D01FB97129D4409500D01536 /* Cartelerapp.app */,
+				D0443D0729F7DC4B002313ED /* CartelerappTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +140,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D0443D0829F7DC4B002313ED /* CartelerappTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0443D0929F7DC4B002313ED /* CartelerappTests.swift */,
+			);
+			path = CartelerappTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +168,24 @@
 			productReference = D01FB97129D4409500D01536 /* Cartelerapp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D0443D0629F7DC4B002313ED /* CartelerappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0443D0D29F7DC4B002313ED /* Build configuration list for PBXNativeTarget "CartelerappTests" */;
+			buildPhases = (
+				D0443D0329F7DC4B002313ED /* Sources */,
+				D0443D0429F7DC4B002313ED /* Frameworks */,
+				D0443D0529F7DC4B002313ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0443D0C29F7DC4B002313ED /* PBXTargetDependency */,
+			);
+			name = CartelerappTests;
+			productName = CartelerappTests;
+			productReference = D0443D0729F7DC4B002313ED /* CartelerappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -150,6 +198,10 @@
 				TargetAttributes = {
 					D01FB97029D4409500D01536 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					D0443D0629F7DC4B002313ED = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D01FB97029D4409500D01536;
 					};
 				};
 			};
@@ -167,6 +219,7 @@
 			projectRoot = "";
 			targets = (
 				D01FB97029D4409500D01536 /* Cartelerapp */,
+				D0443D0629F7DC4B002313ED /* CartelerappTests */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +231,13 @@
 			files = (
 				D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */,
 				D01FB97929D4409B00D01536 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0443D0529F7DC4B002313ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +262,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0443D0329F7DC4B002313ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0443D0A29F7DC4B002313ED /* CartelerappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0443D0C29F7DC4B002313ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D01FB97029D4409500D01536 /* Cartelerapp */;
+			targetProxy = D0443D0B29F7DC4B002313ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D01FB97D29D4409B00D01536 /* Debug */ = {
@@ -377,6 +453,40 @@
 			};
 			name = Release;
 		};
+		D0443D0E29F7DC4B002313ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CartelerappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cartelerapp.app/Cartelerapp";
+			};
+			name = Debug;
+		};
+		D0443D0F29F7DC4B002313ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CartelerappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cartelerapp.app/Cartelerapp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -394,6 +504,15 @@
 			buildConfigurations = (
 				D01FB98029D4409B00D01536 /* Debug */,
 				D01FB98129D4409B00D01536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0443D0D29F7DC4B002313ED /* Build configuration list for PBXNativeTarget "CartelerappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0443D0E29F7DC4B002313ED /* Debug */,
+				D0443D0F29F7DC4B002313ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
