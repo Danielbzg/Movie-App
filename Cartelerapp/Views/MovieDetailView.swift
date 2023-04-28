@@ -99,14 +99,12 @@ struct MovieDetailView: View {
                         print("Película a añadir: \(movie)")
                     }, label: {
                         HStack{
-                            
-                            Image(isFavorite ? "starFav" : "starAdd")
+                            Image(isFavorite ? "fullHeart" : "emptyHeart")
                                 .aspectRatio(contentMode: .fit)
-                            
-                            Text(isFavorite ? "Eliminar" : "Añadir")
+                                //.background(Color.main)
                             
                         } .padding([.leading, .trailing], 5)
-                        
+                            .background(Color.main)
                     })
                         .frame(minWidth: 30, minHeight: 45)
                         .background(.gray)
@@ -116,6 +114,13 @@ struct MovieDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
                 
+                /*
+                 //Botón de prueba de crasheo
+                 HStack{
+                    Button("Crash") {
+                        fatalError("Crash was triggered")
+                    }
+                }*/
                 
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Sinopsis")
