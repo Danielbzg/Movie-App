@@ -13,12 +13,14 @@ struct MovieDetailView: View {
     @State private var movieDetails: Details? = nil
     
     let movie: Movie
-    @State var isFavorite: Bool
+    @State var isFavourite: Bool
+    @State var isPending: Bool
     @State var credits: String = ""
     
     init(movie: Movie) {
         self.movie = movie
-        self.isFavorite = movie.isFavorite
+        self.isFavourite = movie.isFavourite
+        self.isPending = movie.isPending
     }
     
     var body: some View {
@@ -88,18 +90,59 @@ struct MovieDetailView: View {
                 
                 //Botones Favoritos - Pendientes...
                 HStack{
+                    //Botón de favoritas
                     Button(action: {
-                        if isFavorite {
+                        if isFavourite {
                             Dependencies.repository.removeMovieFromFavourite(movie)
                         } else {
                             Dependencies.repository.addMovieFavourite(movie)
                         }
-                        isFavorite.toggle()
+                        isFavourite.toggle()
                         
-                        print("Película a añadir: \(movie)")
+                        print("Película a añadir a favoritas: \(movie)")
                     }, label: {
                         HStack{
-                            Image(isFavorite ? "fullHeart" : "emptyHeart")
+                            Image(isFavourite ? "fullHeart" : "emptyHeart")
+                                .aspectRatio(contentMode: .fit)
+                                //.background(Color.main)
+                            
+                        } .padding([.leading, .trailing], 5)
+                            .background(Color.main)
+                    })
+                        .frame(minWidth: 30, minHeight: 45)
+                        .background(.gray)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                    
+                    //Botón de pendientes
+                    Button(action: {
+                        if isPending {
+                            Dependencies.repository.removeMovieFromPending(movie)
+                        } else {
+                            Dependencies.repository.addMoviePending(movie)
+                        }
+                        isPending.toggle()
+                        
+                        print("Película a añadir a pendientes: \(movie)")
+                    }, label: {
+                        HStack{
+                            Image(isPending ? "save" : "noSave")
+                                .aspectRatio(contentMode: .fit)
+                                //.background(Color.main)
+                            
+                        } .padding([.leading, .trailing], 5)
+                            .background(Color.main)
+                    })
+                        .frame(minWidth: 30, minHeight: 45)
+                        .background(.gray)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                    
+                    //Botón de compartir sin funcionalidad
+                    Button(action: {
+                    }, label: {
+                        HStack{
+                            Image("share")
                                 .aspectRatio(contentMode: .fit)
                                 //.background(Color.main)
                             

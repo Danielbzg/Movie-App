@@ -28,16 +28,25 @@ enum MoviesAPI {
 
 extension UserDefaults {
 
-    var favoritesMovies: [Int] {
-        set { set(newValue, forKey: "favoritesMovies") }
-        get { value(forKey: "favoritesMovies") as? [Int] ?? [] }
+    var favouritesMovies: [Int] {
+        set { set(newValue, forKey: "favouritesMovies") }
+        get { value(forKey: "favouritesMovies") as? [Int] ?? [] }
+    }
+    
+    var pendingMovies: [Int] {
+        set { set(newValue, forKey: "pendingMovies") }
+        get { value(forKey: "pendingMovies") as? [Int] ?? [] }
     }
 }
 
 extension Movie {
 
-    var isFavorite: Bool {
+    var isFavourite: Bool {
         Dependencies.repository.favouritesMovies().contains(id)
+    }
+    
+    var isPending: Bool {
+        Dependencies.repository.pendingMovies().contains(id)
     }
 }
 
@@ -96,20 +105,38 @@ class Repository {
     
     //Getter, setter y añadir película a favorita
     public func favouritesMovies() -> [Int] {
-        UserDefaults.standard.favoritesMovies
+        UserDefaults.standard.favouritesMovies
     }
 
     public func addMovieFavourite(_ movie: Movie) {
-        var favoritesMovies = UserDefaults.standard.favoritesMovies
-        favoritesMovies.append(movie.id)
-        UserDefaults.standard.favoritesMovies = favoritesMovies
+        var favouritesMovies = UserDefaults.standard.favouritesMovies
+        favouritesMovies.append(movie.id)
+        UserDefaults.standard.favouritesMovies = favouritesMovies
     }
 
     public func removeMovieFromFavourite(_ movie: Movie) {
-        var favoritesMovies = UserDefaults.standard.favoritesMovies
-        if let index = favoritesMovies.firstIndex(of: movie.id) {
-            favoritesMovies.remove(at: index)
-            UserDefaults.standard.favoritesMovies = favoritesMovies
+        var favouritesMovies = UserDefaults.standard.favouritesMovies
+        if let index = favouritesMovies.firstIndex(of: movie.id) {
+            favouritesMovies.remove(at: index)
+            UserDefaults.standard.favouritesMovies = favouritesMovies
+        }
+    }
+    
+    public func pendingMovies() -> [Int] {
+        UserDefaults.standard.pendingMovies
+    }
+    
+    public func addMoviePending(_ movie: Movie) {
+        var pendingMovies = UserDefaults.standard.pendingMovies
+        pendingMovies.append(movie.id)
+        UserDefaults.standard.pendingMovies = pendingMovies
+    }
+    
+    public func removeMovieFromPending(_ movie: Movie) {
+        var pendingMovies = UserDefaults.standard.pendingMovies
+        if let index = pendingMovies.firstIndex(of: movie.id) {
+            pendingMovies.remove(at: index)
+            UserDefaults.standard.pendingMovies = pendingMovies
         }
     }
 
