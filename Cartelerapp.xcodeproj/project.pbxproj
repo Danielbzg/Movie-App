@@ -16,6 +16,7 @@
 		D01FB98629D4505200D01536 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98529D4505200D01536 /* Repository.swift */; };
 		D01FB98A29D4509900D01536 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB98929D4509900D01536 /* Movie.swift */; };
 		D025E7E129ED8709009B659D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025E7E029ED8709009B659D /* SearchView.swift */; };
+		D0311A142A014575009E6906 /* MovieListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0311A132A014575009E6906 /* MovieListsView.swift */; };
 		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
 		D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D69429E8373E00EE13CE /* MovieCredits.swift */; };
 		D0BC833929FC776D004A83F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */; };
@@ -37,6 +38,7 @@
 		D01FB98529D4505200D01536 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D01FB98929D4509900D01536 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D025E7E029ED8709009B659D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D0311A132A014575009E6906 /* MovieListsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListsView.swift; sourceTree = "<group>"; };
 		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		D095D69429E8373E00EE13CE /* MovieCredits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCredits.swift; sourceTree = "<group>"; };
 		D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D1738329DC25FB0090F20D /* CarteleraView.swift */,
+				D0311A132A014575009E6906 /* MovieListsView.swift */,
 				C2695B8A29E405710065D916 /* MovieDetailView.swift */,
 				D025E7E029ED8709009B659D /* SearchView.swift */,
 			);
@@ -238,6 +241,7 @@
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
 				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
 				D0D1738629DC27060090F20D /* Response.swift in Sources */,
+				D0311A142A014575009E6906 /* MovieListsView.swift in Sources */,
 				D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */,
 				D025E7E129ED8709009B659D /* SearchView.swift in Sources */,
 			);
