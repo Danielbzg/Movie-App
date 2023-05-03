@@ -10,6 +10,9 @@
 		C2695B8729E400620065D916 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8629E400620065D916 /* Dependencies.swift */; };
 		C2695B8929E401050065D916 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8829E401050065D916 /* RemoteImage.swift */; };
 		C2695B8B29E405710065D916 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2695B8A29E405710065D916 /* MovieDetailView.swift */; };
+		C2EEB2552A0261A5003B9A72 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2542A0261A5003B9A72 /* ActionButton.swift */; };
+		C2EEB2572A026A85003B9A72 /* Color+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2562A026A85003B9A72 /* Color+Extras.swift */; };
+		C2EEB2592A026ABC003B9A72 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2582A026ABC003B9A72 /* Formatters.swift */; };
 		D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01FB97429D4409500D01536 /* CartelerappApp.swift */; };
 		D01FB97929D4409B00D01536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97829D4409B00D01536 /* Assets.xcassets */; };
 		D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */; };
@@ -18,6 +21,10 @@
 		D025E7E129ED8709009B659D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025E7E029ED8709009B659D /* SearchView.swift */; };
 		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
 		D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D69429E8373E00EE13CE /* MovieCredits.swift */; };
+		D0BC833929FC776D004A83F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */; };
+		D0BC833C29FC7882004A83F2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0BC833B29FC7882004A83F2 /* FirebaseAnalytics */; };
+		D0BC833E29FC7882004A83F2 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D0BC833D29FC7882004A83F2 /* FirebaseAppDistribution-Beta */; };
+		D0BC834029FC7882004A83F2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0BC833F29FC7882004A83F2 /* FirebaseCrashlytics */; };
 		D0D1738429DC25FC0090F20D /* CarteleraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738329DC25FB0090F20D /* CarteleraView.swift */; };
 		D0D1738629DC27060090F20D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1738529DC27060090F20D /* Response.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +33,9 @@
 		C2695B8629E400620065D916 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		C2695B8829E401050065D916 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		C2695B8A29E405710065D916 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		C2EEB2542A0261A5003B9A72 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		C2EEB2562A026A85003B9A72 /* Color+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extras.swift"; sourceTree = "<group>"; };
+		C2EEB2582A026ABC003B9A72 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D01FB97129D4409500D01536 /* Cartelerapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartelerapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01FB97429D4409500D01536 /* CartelerappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartelerappApp.swift; sourceTree = "<group>"; };
 		D01FB97829D4409B00D01536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,6 +45,7 @@
 		D025E7E029ED8709009B659D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		D095D69429E8373E00EE13CE /* MovieCredits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCredits.swift; sourceTree = "<group>"; };
+		D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0D1738329DC25FB0090F20D /* CarteleraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarteleraView.swift; sourceTree = "<group>"; };
 		D0D1738529DC27060090F20D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,12 +55,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BC834029FC7882004A83F2 /* FirebaseCrashlytics in Frameworks */,
+				D0BC833C29FC7882004A83F2 /* FirebaseAnalytics in Frameworks */,
+				D0BC833E29FC7882004A83F2 /* FirebaseAppDistribution-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C2EEB2532A026193003B9A72 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				C2EEB2542A0261A5003B9A72 /* ActionButton.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		D01FB96829D4409500D01536 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +91,7 @@
 		D01FB97329D4409500D01536 /* Cartelerapp */ = {
 			isa = PBXGroup;
 			children = (
+				D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */,
 				D01FB98429D4439F00D01536 /* Views */,
 				D01FB98329D4437E00D01536 /* Models */,
 				D01FB98229D4436300D01536 /* Repository */,
@@ -111,9 +134,12 @@
 		D01FB98429D4439F00D01536 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C2EEB2532A026193003B9A72 /* Widgets */,
 				D0D1738329DC25FB0090F20D /* CarteleraView.swift */,
 				C2695B8A29E405710065D916 /* MovieDetailView.swift */,
 				D025E7E029ED8709009B659D /* SearchView.swift */,
+				C2EEB2562A026A85003B9A72 /* Color+Extras.swift */,
+				C2EEB2582A026ABC003B9A72 /* Formatters.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,12 +154,18 @@
 				D01FB96D29D4409500D01536 /* Sources */,
 				D01FB96E29D4409500D01536 /* Frameworks */,
 				D01FB96F29D4409500D01536 /* Resources */,
+				D0BC834129FC794C004A83F2 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Cartelerapp;
+			packageProductDependencies = (
+				D0BC833B29FC7882004A83F2 /* FirebaseAnalytics */,
+				D0BC833D29FC7882004A83F2 /* FirebaseAppDistribution-Beta */,
+				D0BC833F29FC7882004A83F2 /* FirebaseCrashlytics */,
+			);
 			productName = Cartelerapp;
 			productReference = D01FB97129D4409500D01536 /* Cartelerapp.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +194,9 @@
 				Base,
 			);
 			mainGroup = D01FB96829D4409500D01536;
+			packageReferences = (
+				D0BC833A29FC7882004A83F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D01FB97229D4409500D01536 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -178,10 +213,33 @@
 			files = (
 				D01FB97C29D4409B00D01536 /* Preview Assets.xcassets in Resources */,
 				D01FB97929D4409B00D01536 /* Assets.xcassets in Resources */,
+				D0BC833929FC776D004A83F2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0BC834129FC794C004A83F2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				" ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D01FB96D29D4409500D01536 /* Sources */ = {
@@ -192,13 +250,16 @@
 				D01FB98A29D4509900D01536 /* Movie.swift in Sources */,
 				D0D1738429DC25FC0090F20D /* CarteleraView.swift in Sources */,
 				C2695B8B29E405710065D916 /* MovieDetailView.swift in Sources */,
+				C2EEB2572A026A85003B9A72 /* Color+Extras.swift in Sources */,
 				C2695B8929E401050065D916 /* RemoteImage.swift in Sources */,
+				C2EEB2592A026ABC003B9A72 /* Formatters.swift in Sources */,
 				D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
 				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
 				D0D1738629DC27060090F20D /* Response.swift in Sources */,
 				D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */,
 				D025E7E129ED8709009B659D /* SearchView.swift in Sources */,
+				C2EEB2552A0261A5003B9A72 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +389,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Cartelerapp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -356,6 +418,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Cartelerapp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -399,6 +462,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0BC833A29FC7882004A83F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 9.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0BC833B29FC7882004A83F2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BC833A29FC7882004A83F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		D0BC833D29FC7882004A83F2 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BC833A29FC7882004A83F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+		D0BC833F29FC7882004A83F2 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BC833A29FC7882004A83F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D01FB96929D4409500D01536 /* Project object */;
 }

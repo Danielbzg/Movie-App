@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 enum MoviesAPI {
 
@@ -28,19 +27,27 @@ enum MoviesAPI {
 
 extension UserDefaults {
 
-    var favoritesMovies: [Int] {
-        set { set(newValue, forKey: "favoritesMovies") }
-        get { value(forKey: "favoritesMovies") as? [Int] ?? [] }
+    var favouritesMovies: [Int] {
+        set { set(newValue, forKey: "favouritesMovies") }
+        get { value(forKey: "favouritesMovies") as? [Int] ?? [] }
+    }
+    
+    var pendingMovies: [Int] {
+        set { set(newValue, forKey: "pendingMovies") }
+        get { value(forKey: "pendingMovies") as? [Int] ?? [] }
     }
 }
 
 extension Movie {
 
-    var isFavorite: Bool {
+    var isFavourite: Bool {
         Dependencies.repository.favouritesMovies().contains(id)
     }
+    
+    var isPending: Bool {
+        Dependencies.repository.pendingMovies().contains(id)
+    }
 }
-
 
 class Repository {
 
@@ -68,23 +75,41 @@ class Repository {
     private func url(_ endpoint: MoviesAPI.Endpoint) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
-
+    
     //Getter, setter y añadir película a favorita
     public func favouritesMovies() -> [Int] {
-        UserDefaults.standard.favoritesMovies
+        UserDefaults.standard.favouritesMovies
     }
 
     public func addMovieFavourite(_ movie: Movie) {
-        var favoritesMovies = UserDefaults.standard.favoritesMovies
-        favoritesMovies.append(movie.id)
-        UserDefaults.standard.favoritesMovies = favoritesMovies
+        var favouritesMovies = UserDefaults.standard.favouritesMovies
+        favouritesMovies.append(movie.id)
+        UserDefaults.standard.favouritesMovies = favouritesMovies
     }
 
     public func removeMovieFromFavourite(_ movie: Movie) {
-        var favoritesMovies = UserDefaults.standard.favoritesMovies
-        if let index = favoritesMovies.firstIndex(of: movie.id) {
-            favoritesMovies.remove(at: index)
-            UserDefaults.standard.favoritesMovies = favoritesMovies
+        var favouritesMovies = UserDefaults.standard.favouritesMovies
+        if let index = favouritesMovies.firstIndex(of: movie.id) {
+            favouritesMovies.remove(at: index)
+            UserDefaults.standard.favouritesMovies = favouritesMovies
+        }
+    }
+    
+    public func pendingMovies() -> [Int] {
+        UserDefaults.standard.pendingMovies
+    }
+    
+    public func addMoviePending(_ movie: Movie) {
+        var pendingMovies = UserDefaults.standard.pendingMovies
+        pendingMovies.append(movie.id)
+        UserDefaults.standard.pendingMovies = pendingMovies
+    }
+    
+    public func removeMovieFromPending(_ movie: Movie) {
+        var pendingMovies = UserDefaults.standard.pendingMovies
+        if let index = pendingMovies.firstIndex(of: movie.id) {
+            pendingMovies.remove(at: index)
+            UserDefaults.standard.pendingMovies = pendingMovies
         }
     }
 
@@ -100,15 +125,21 @@ class Repository {
     }
     
     //Función para consultar en la API los Detalles de la película
-    public func moviesDetails(id: Int) async throws -> MovieDetails {
+    public func moviesDetails(id: Int) async throws -> Details {
         let url: URL = urlMDetails(.movieIndividual, idMovie: id)
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let response = try await URLSession.shared.data(for: request)
         let data: Data = response.0
-        let result = try decoder.decode(ResponseMoviesDetails.self, from: data)
-        return result.results
+        let result = try decoder.decode(MovieDetails.self, from: data)
+        let duration = result.runtime
+        var generos: [String] = []
+        for genre in result.genres {
+            let genreName = genre.name
+            generos.append(genreName)
+        }
+        return .init(duration: duration, generos: generos)
     }
     
     //Función para consultar en la API los Créditos de la película
@@ -163,4 +194,9 @@ class Repository {
 struct Credits {
     let director: Crew?
     let mainCharacters: [Cast]
+}
+
+struct Details {
+    let duration: Int
+    let generos: [String]
 }
