@@ -26,203 +26,196 @@ struct MovieDetailView: View {
     var body: some View {
         
         VStack {
+
             ScrollView(.vertical) {
-                ZStack {
-                    AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "PosterDefault")) { image in image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .mask(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red, Color.red, Color.main.opacity(0)]), startPoint: .top, endPoint: .bottom))
-                    } placeholder: {
-                        ProgressView()
-                    } //Fin imagen
-                    
-                    VStack{
-                        Spacer()
-                        Text(movie.title)
-                            .foregroundColor(Color.title)
-                            .font(.system(size: 28, weight: .bold, design: .default))
-                            .multilineTextAlignment(.center)
-                        //.font(Font.custom("SF Pro Display", size: 28))
-                        
+
+                headerView
+
+                VStack(spacing: 16) {
+
+                    HStack(alignment: .center, spacing: 5) {
+
+                        Text("Estreno \(movie.formattedReleaseDate ?? "")")
+
+                        Text(" · ")
+
+                        Text("Duración \(String(movieDetails?.duration ?? 0)) min.")
+
                     }
-                    
-                }
-                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                
-                HStack(alignment: .center, spacing: 5) {
-                    
-                    Text("Estreno \(Dependencies.repository.convertFormatDate(dateInsert: movie.releaseDate))")
-                    
-                    Text(" · ")
-                    
-                    Text("Duración \(String(movieDetails?.duration ?? 0)) min.")
-                    
-                }
-                .font(.system(size: 15, weight: .regular, design: .default))
-                .foregroundColor(Color.secondary)
-                .frame(maxWidth: .infinity)
-                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                
-                //Géneros de la película
-                HStack {
-                    if let generos = movieDetails?.generos {
-                        LazyVGrid(columns: [GridItem(.flexible(minimum:115), spacing: 16), GridItem(.flexible(minimum:115), spacing: 16)], content:  {
-                            ForEach(generos, id: \.self) { genero in
-                                ZStack{
-                                    Rectangle()
-                                        .fill(Color.backgroundButton)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.secondary, lineWidth: 0.5)
-                                        )
-                                        .cornerRadius(20)
-                                    
-                                    Text(genero)
-                                        .padding(3)
-                                        .foregroundColor(Color.secondary)
-                                }
-                            }
-                        }
-                        )}
-                }
-                .font(.system(size: 14, weight: .regular, design: .default))
-                .frame(maxWidth: 120, alignment: .center)
-                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                
-                //Botones Favoritos - Pendientes...
-                HStack{
-                    //Botón de favoritas
-                    Button(action: {
-                        if isFavourite {
-                            Dependencies.repository.removeMovieFromFavourite(movie)
-                        } else {
-                            Dependencies.repository.addMovieFavourite(movie)
-                        }
-                        isFavourite.toggle()
-                        
-                        print("Película a añadir a favoritas: \(movie)")
-                    }, label: {
-                        HStack{
-                            Image(isFavourite ? "fullHeart" : "emptyHeart")
-                                .aspectRatio(contentMode: .fit)
-                                //.background(Color.main)
-                            
-                        } .padding([.leading, .trailing], 5)
-                            .background(Color.main)
-                    })
-                        .frame(minWidth: 30, minHeight: 45)
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                    
-                    //Botón de pendientes
-                    Button(action: {
-                        if isPending {
-                            Dependencies.repository.removeMovieFromPending(movie)
-                        } else {
-                            Dependencies.repository.addMoviePending(movie)
-                        }
-                        isPending.toggle()
-                        
-                        print("Película a añadir a pendientes: \(movie)")
-                    }, label: {
-                        HStack{
-                            Image(isPending ? "save" : "noSave")
-                                .aspectRatio(contentMode: .fit)
-                                //.background(Color.main)
-                            
-                        } .padding([.leading, .trailing], 5)
-                            .background(Color.main)
-                    })
-                        .frame(minWidth: 30, minHeight: 45)
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                    
-                    //Botón de compartir sin funcionalidad
-                    Button(action: {
-                    }, label: {
-                        HStack{
-                            Image("share")
-                                .aspectRatio(contentMode: .fit)
-                                //.background(Color.main)
-                            
-                        } .padding([.leading, .trailing], 5)
-                            .background(Color.main)
-                    })
-                        .frame(minWidth: 30, minHeight: 45)
-                        .background(.gray)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-                
-                /*
-                 //Botón de prueba de crasheo
-                 HStack{
-                    Button("Crash") {
-                        fatalError("Crash was triggered")
-                    }
-                }*/
-                
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Sinopsis")
-                        .foregroundColor(Color.secondary)
-                    
-                    Text(movie.overview)
-                        .foregroundColor(Color.longText)
-                }
-                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                
-                if let director = movieCredits?.director {
+                    .font(.callout)
+                    .foregroundColor(Color.dsSecondary)
+
+                    genresView
+
+                    actionButtons
+
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("Director")
-                            .foregroundColor(Color(red: 121/255, green: 128/255, blue: 176/255))
-                        Text(String(director.name))
-                            .foregroundColor(Color.white)
+                        Text("Sinopsis")
+                            .foregroundColor(Color.dsSecondary)
+
+                        Text(movie.overview)
+                            .foregroundColor(Color.longText)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
-                }
-                
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Reparto")
-                        .foregroundColor(Color.secondary)
-                    
-                    ScrollView(.horizontal){
-                        HStack{
-                            if let mainCharacters = movieCredits?.mainCharacters {
-                                ForEach(mainCharacters) { character in
-                                    VStack{
-                                        AsyncImage(url: RemoteImage.movieImage(path: character.profilePath ?? "posterDefault")) { image in image.resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 85, height: 85)
-                                                .cornerRadius(25)
-                                        } placeholder: {
-                                            ProgressView()
-                                        } //Fin imagen
-                                        
-                                        Text(character.name)
-                                            .foregroundColor(Color.white)
-                                        
-                                        Text(character.character)
-                                            .foregroundColor(Color.gray)
+
+                    if let director = movieCredits?.director {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Director")
+                                .foregroundColor(Color(red: 121/255, green: 128/255, blue: 176/255))
+                            Text(String(director.name))
+                                .foregroundColor(Color.white)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    VStack(alignment: .leading, spacing: 8) {
+
+                        Text("Reparto")
+                            .foregroundColor(Color.dsSecondary)
+
+                        ScrollView(.horizontal){
+
+                            HStack(alignment: .top, spacing: 16)  {
+
+                                if let mainCharacters = movieCredits?.mainCharacters {
+
+                                    ForEach(mainCharacters) { character in
+
+                                        VStack(spacing: 8) {
+
+                                            AsyncImage(
+                                                url: RemoteImage.movieImage(path: character.profilePath ?? "")
+                                            ) { image in
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                            } placeholder: {
+                                                Image("PosterDefault")
+                                            } //Fin imagen
+                                            .frame(height: 86)
+                                            .background(Color.dsSecondary)
+                                            .cornerRadius(25)
+
+                                            VStack(alignment: .leading, spacing: 4) {
+
+                                                Text(character.name)
+                                                    .font(.footnote)
+                                                    .foregroundColor(Color.white)
+
+                                                Text(character.character)
+                                                    .font(.caption)
+                                                    .foregroundColor(Color.gray)
+                                            }
+                                        }
+                                        .frame(width: 86)
                                     }
                                 }
                             }
                         }
+                        .frame(width: .infinity, alignment: .trailing)
+                        .frame(minHeight: 150)
                     }
-                    .frame(width: .infinity, height: 150, alignment: .trailing)
                 }
-                .padding(.init(top: 10, leading: 2, bottom: 10, trailing: 2))
+                .padding(.horizontal, 16)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
-        }.background(Color.main)
-            .onAppear {
-                loadCredits()
-                loadMovieDetails()
+        }
+        .ignoresSafeArea(edges: .top)
+        .background(Color.main)
+        .onAppear {
+            loadCredits()
+            loadMovieDetails()
+        }
+    }
+
+    var posterMaskGradient: some View {
+        LinearGradient(
+            gradient: Gradient(colors: [Color.red, Color.red, Color.red, Color.main.opacity(0)]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    var headerView: some View {
+
+        ZStack {
+            AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "")) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .mask(posterMaskGradient)
+            } placeholder: {
+                ProgressView()
             }
+
+            VStack{
+                Spacer()
+                Text(movie.title)
+                    .foregroundColor(Color.title)
+                    .font(.title.bold())
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
+            }
+        }
+    }
+
+    var genresView: some View {
+
+        HStack {
+
+            if let generos = movieDetails?.generos {
+
+                LazyVGrid(
+                    columns: [GridItem(.flexible(minimum:115), spacing: 8), GridItem(.flexible(minimum:115), spacing: 8)]
+                ) {
+                    ForEach(generos, id: \.self) { genero in
+
+                        ZStack{
+                            
+                            Rectangle()
+                                .fill(Color.backgroundButton)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.dsSecondary, lineWidth: 0.5)
+                                )
+                                .cornerRadius(20)
+
+                            Text(genero)
+                                .font(.caption)
+                                .padding(2)
+                                .foregroundColor(Color.dsSecondary)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    var actionButtons: some View {
+        //Botones Favoritos - Pendientes...
+        HStack(spacing: 32)  {
+
+            ActionButton(icon: isFavourite ? "fullHeart" : "emptyHeart") {
+                if isFavourite {
+                    Dependencies.repository.removeMovieFromFavourite(movie)
+                } else {
+                    Dependencies.repository.addMovieFavourite(movie)
+                }
+                isFavourite.toggle()
+
+                print("Película a añadir a favoritas: \(movie)")
+            }
+
+            ActionButton(icon: isPending ? "save" : "noSave") {
+                if isPending {
+                    Dependencies.repository.removeMovieFromPending(movie)
+                } else {
+                    Dependencies.repository.addMoviePending(movie)
+                }
+                isPending.toggle()
+
+                print("Película a añadir a pendientes: \(movie)")
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
     }
     
     func loadCredits() {
@@ -253,6 +246,9 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: Movie(id: 502356, title: "The Super Mario Bros. Movie", posterPath: Optional("/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"), overview: "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.", releaseDate: "2023-04-05", voteAverage: 7.5, genreIds: [16, 12, 10751, 14, 35]))
+
+        NavigationView {
+            MovieDetailView(movie: Movie(id: 502356, title: "The Super Mario Bros. Movie", posterPath: Optional("/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"), overview: "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.", releaseDate: "2023-04-05", voteAverage: 7.5, genreIds: [16, 12, 10751, 14, 35]))
+        }
     }
 }

@@ -69,7 +69,7 @@ struct CarteleraView: View {
         }
         .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
         .onAppear {moviesInTheatres()}
-        .navigationTitle("CARTELERAPP")
+        .navigationTitle("")
     }
 
     
@@ -88,6 +88,8 @@ struct CarteleraView: View {
 
 struct Cartelera_Previews: PreviewProvider {
     static var previews: some View {
-        CarteleraView()
+        NavigationView {
+            CarteleraView()
+        }
     }
 }
