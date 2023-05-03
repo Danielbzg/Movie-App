@@ -44,6 +44,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                     .tabItem {
                         Label("Buscador", systemImage: "magnifyingglass")
                     }
+                    
+                    NavigationView {
+                        MovieListsView()
+                    }
+                    
+                    .tabItem {
+                        Label("Mis Listas", systemImage: "text.alignleft")
+                    }
                 }
             }
         }

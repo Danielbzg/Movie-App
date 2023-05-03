@@ -9,76 +9,46 @@ import SwiftUI
 
 struct MovieListsView: View {
 
-    @State private var movies: [Movie] = []
+    @State private var selected = 0
+    @State private var moviesFavourites: [MovieDetails] = []
+    @State private var moviesPending: [Movie] = []
 
     var body: some View {
-
-        ScrollView(.vertical) {
-
-            LazyVGrid(columns: [GridItem(.flexible(minimum:110), spacing: 1), GridItem(.flexible(minimum:150), spacing: 0)], content:  {
-
-                ForEach(movies) { movieItem in
-
+        VStack{
+            VStack{
+                Picker("", selection: $selected) {
+                    Text("Favoritas").tag(0)
+                    Text("Pendientes").tag(1)
+                }.pickerStyle(.segmented)
+                
+            }
+            if selected == 0{
+                ForEach(moviesFavourites) {item in
                     VStack{
-
-                        NavigationLink {
-
-                            MovieDetailView(movie: movieItem)
-
-                        } label: {
-
-                            VStack(spacing: 2){
-                                Text(String(movieItem.releaseDate))
-                                    .frame(width: 140, height: 20, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
-                                
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(25)
-
-                                } placeholder: {
-
-                                    ProgressView()
-
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: 200)
-                                .cornerRadius(8)
-                                
-                                Text(movieItem.title)
-                                    .frame(width: 140, height: 50, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
-                                
-                            }
-                            .frame(width: 150, height: 275, alignment: .trailing)
-                            .background(Color(red: 21/255, green: 21/255, blue: 85/255).opacity(0.8))
-                                .cornerRadius(8)
-                        }
+                        Text(item.title)
+                            .foregroundColor(.white)
                     }
                 }
-            })//Espacios de los Posters y títulos
+            }
+            if selected == 1{
+                Text("Listado de pendientes")
+                    .foregroundColor(.white)
+            }
+            
+            
         }
-        .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
-        .onAppear {moviesInTheatres()}
-        .navigationTitle("CARTELERAPP")
+        .background(Color.main)
+        .onAppear { LoadFavouritesMovies() }
+        .navigationTitle("Mis listas")
     }
 
     
-    func moviesInTheatres() {
+    func LoadFavouritesMovies() {
         Task {
             do {
-                let movies = try await Dependencies.repository.moviesInTheatres()
+                let movies = try await Dependencies.repository.getFavouritesMovies()
                 print(movies)
-                self.movies = movies
+                self.moviesFavourites = movies
             } catch {
                 print(error)
             }
