@@ -24,7 +24,8 @@ struct MovieDetailView: View {
     }
     
     var body: some View {
-        
+
+        // Ramita para que Daniel se quede tranquilo
         VStack {
             ScrollView(.vertical) {
                 ZStack {
