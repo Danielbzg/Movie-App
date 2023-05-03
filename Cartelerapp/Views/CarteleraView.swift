@@ -29,7 +29,7 @@ struct CarteleraView: View {
 
                             VStack(spacing: 0.2){
                                 
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault.jpg")) { image in
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault")) { image in
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -65,7 +65,7 @@ struct CarteleraView: View {
         }
         .background(Color.main)
         .onAppear {moviesInTheatres()}
-        .navigationTitle("CARTELERAPP")
+        .navigationTitle("")
     }
 
     
@@ -84,6 +84,8 @@ struct CarteleraView: View {
 
 struct Cartelera_Previews: PreviewProvider {
     static var previews: some View {
-        CarteleraView()
+        NavigationView {
+            CarteleraView()
+        }
     }
 }

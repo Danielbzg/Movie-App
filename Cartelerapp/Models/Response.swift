@@ -10,7 +10,3 @@ import Foundation
 struct ResponseMovies: Codable {
     let results: [Movie]
 }
-
-struct ResponseMoviesDetails: Codable {
-    let results: MovieDetails
-}
