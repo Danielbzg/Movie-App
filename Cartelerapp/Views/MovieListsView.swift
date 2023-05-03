@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct MovieListsView: View {
-
+    
     @State private var selected = 0
     @State private var moviesFavourites: [MovieDetails] = []
-    @State private var moviesPending: [Movie] = []
-
+    @State private var moviesPending: [MovieDetails] = []
+    
     var body: some View {
         VStack{
             VStack{
@@ -23,25 +23,72 @@ struct MovieListsView: View {
                 
             }
             if selected == 0{
-                ForEach(moviesFavourites) {item in
-                    VStack{
-                        Text(item.title)
-                            .foregroundColor(.white)
+                ScrollView(.vertical){
+                    ForEach(moviesFavourites) {movieItem in
+                        VStack{
+                            HStack{
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(25)
+                                    
+                                } placeholder: {
+                                    
+                                    ProgressView()
+                                    
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: 200)
+                                .cornerRadius(8)
+                                
+                                VStack{
+                                    Text(movieItem.title)
+                                    Text(String(movieItem.releaseDate))
+                                    Text(String(movieItem.runtime))
+                                        
+                                }.foregroundColor(.white)
+                            }
+                        }
                     }
                 }
             }
             if selected == 1{
-                Text("Listado de pendientes")
-                    .foregroundColor(.white)
+                ScrollView(.vertical){
+                    ForEach(moviesPending) {movieItem in
+                        VStack{
+                            HStack{
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(25)
+                                    
+                                } placeholder: {
+                                    
+                                    ProgressView()
+                                    
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: 200)
+                                .cornerRadius(8)
+                                
+                                VStack{
+                                    Text(movieItem.title)
+                                    Text(String(movieItem.releaseDate))
+                                    Text(String(movieItem.runtime))
+                                }.foregroundColor(.white)
+                            }
+                        }
+                    }
+                }
             }
-            
-            
-        }
-        .background(Color.main)
-        .onAppear { LoadFavouritesMovies() }
-        .navigationTitle("Mis listas")
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(Color.main)
+            .onAppear { LoadFavouritesMovies()
+                LoadPendingMovies()
+            }
+            .navigationTitle("Mis listas")
     }
-
+    
     
     func LoadFavouritesMovies() {
         Task {
@@ -49,6 +96,17 @@ struct MovieListsView: View {
                 let movies = try await Dependencies.repository.getFavouritesMovies()
                 print(movies)
                 self.moviesFavourites = movies
+            } catch {
+                print(error)
+            }
+        }
+    }
+    func LoadPendingMovies() {
+        Task {
+            do {
+                let movies = try await Dependencies.repository.getPendingMovies()
+                print(movies)
+                self.moviesPending = movies
             } catch {
                 print(error)
             }

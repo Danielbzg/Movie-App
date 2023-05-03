@@ -155,6 +155,21 @@ class Repository {
             UserDefaults.standard.pendingMovies = pendingMovies
         }
     }
+    
+    public func getPendingMovies() async throws -> [MovieDetails] {
+        let pendingMovies = UserDefaults.standard.pendingMovies
+        var moviesResult: [MovieDetails] = []
+        for item in pendingMovies {
+            do {
+                let movieDetails = try await moviesIndividual(id: item)
+                moviesResult.append(movieDetails)
+            } catch {
+                // Manejo de errores aquí
+                print("Error obteniendo detalles de la película: \(error)")
+            }
+        }
+        return moviesResult
+    }
 
     public func moviesInTheatres() async throws -> [Movie] {
         let url: URL = url(.moviesInTheatres)
