@@ -82,7 +82,7 @@ struct MovieListsView: View {
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background(Color.main)
+            .background(Color.dsMain)
             .onAppear { LoadFavouritesMovies()
                 LoadPendingMovies()
             }

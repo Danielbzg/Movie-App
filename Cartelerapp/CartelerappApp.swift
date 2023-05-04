@@ -36,11 +36,7 @@ struct CartelerappApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                Color.blue // establece el color de fondo del ZStack
-                    .ignoresSafeArea()
                 TabView {
-                    
                     NavigationView {
                         CarteleraView()
                     }
