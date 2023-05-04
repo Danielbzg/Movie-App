@@ -55,3 +55,15 @@ struct SpokenLanguages: Codable {
     let iso6391: String
     let name: String
 }
+
+extension MovieDetails {
+
+    var apiReleaseDate: Date? {
+        DateFormatter.apiFormatter.date(from: releaseDate)
+    }
+
+    var formattedReleaseDate: String? {
+        guard let apiReleaseDate = apiReleaseDate else { return nil }
+        return DateFormatter.appFormatter.string(from: apiReleaseDate)
+    }
+}

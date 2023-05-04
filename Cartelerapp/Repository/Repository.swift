@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum MoviesAPI {
 
@@ -142,6 +143,15 @@ class Repository {
             }
         }
         return moviesResult
+    }
+    
+    public func movieDetailsToMovieIndividual(movieDetails: MovieDetails) -> Movie {
+        var genresIds: [Int] = []
+        for genre in movieDetails.genres {
+            genresIds.append(genre.id)
+        }
+        let convertedMovie = Movie(id: movieDetails.id, title: movieDetails.title, posterPath: movieDetails.posterPath, overview: movieDetails.overview, releaseDate: movieDetails.releaseDate, voteAverage: movieDetails.voteAverage, genreIds: genresIds)
+        return convertedMovie
     }
 
     public func moviesInTheatres() async throws -> [Movie] {
