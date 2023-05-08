@@ -89,9 +89,9 @@ struct MovieDetailView: View {
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fill)
                                             } placeholder: {
-                                                Image("PosterDefault")
+                                                ProgressView()
                                             } //Fin imagen
-                                            .frame(height: 86)
+                                            .frame(width: 86, height: 86)
                                             .background(Color.dsSecondary)
                                             .cornerRadius(25)
                                             
@@ -184,7 +184,7 @@ struct MovieDetailView: View {
                         }
                     }
                     )
-                    .frame(minWidth: 350, alignment: .center)
+                        .frame(minWidth: UIScreen.main.bounds.width * 0.9, alignment: .center)
                 }
             }
         }
