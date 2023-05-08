@@ -89,9 +89,9 @@ struct MovieDetailView: View {
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fill)
                                             } placeholder: {
-                                                ProgressView()
+                                                Image("PosterDefault")
                                             } //Fin imagen
-                                            .frame(width: 86, height: 86)
+                                            .frame(height: 86)
                                             .background(Color.dsSecondary)
                                             .cornerRadius(25)
                                             
