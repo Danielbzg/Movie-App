@@ -22,6 +22,7 @@
 		D0311A142A014575009E6906 /* MovieListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0311A132A014575009E6906 /* MovieListsView.swift */; };
 		D038E88329E5A2F400F9936F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038E88229E5A2F400F9936F /* MovieDetails.swift */; };
 		D0443D0A29F7DC4B002313ED /* CartelerappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0443D0929F7DC4B002313ED /* CartelerappTests.swift */; };
+		D08DAC7A2A0A9F49008147DB /* MovieSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08DAC792A0A9F49008147DB /* MovieSearchResult.swift */; };
 		D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D69429E8373E00EE13CE /* MovieCredits.swift */; };
 		D0BC833929FC776D004A83F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */; };
 		D0BC833C29FC7882004A83F2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0BC833B29FC7882004A83F2 /* FirebaseAnalytics */; };
@@ -60,6 +61,7 @@
 		D038E88229E5A2F400F9936F /* MovieDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		D0443D0729F7DC4B002313ED /* CartelerappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartelerappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0443D0929F7DC4B002313ED /* CartelerappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartelerappTests.swift; sourceTree = "<group>"; };
+		D08DAC792A0A9F49008147DB /* MovieSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchResult.swift; sourceTree = "<group>"; };
 		D095D69429E8373E00EE13CE /* MovieCredits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCredits.swift; sourceTree = "<group>"; };
 		D0BC833829FC776D004A83F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0CED6422A03B37300AB0D5A /* StylesNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylesNavbar.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				D038E88229E5A2F400F9936F /* MovieDetails.swift */,
 				D01FB98929D4509900D01536 /* Movie.swift */,
 				D0D1738529DC27060090F20D /* Response.swift */,
+				D08DAC792A0A9F49008147DB /* MovieSearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				C2695B8929E401050065D916 /* RemoteImage.swift in Sources */,
 				C2EEB2592A026ABC003B9A72 /* Formatters.swift in Sources */,
 				D095D69529E8373E00EE13CE /* MovieCredits.swift in Sources */,
+				D08DAC7A2A0A9F49008147DB /* MovieSearchResult.swift in Sources */,
 				D01FB97529D4409500D01536 /* CartelerappApp.swift in Sources */,
 				D01FB98629D4505200D01536 /* Repository.swift in Sources */,
 				D0D1738629DC27060090F20D /* Response.swift in Sources */,

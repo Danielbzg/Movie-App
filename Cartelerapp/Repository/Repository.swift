@@ -153,6 +153,15 @@ class Repository {
         let convertedMovie = Movie(id: movieDetails.id, title: movieDetails.title, posterPath: movieDetails.posterPath, overview: movieDetails.overview, releaseDate: movieDetails.releaseDate, voteAverage: movieDetails.voteAverage, genreIds: genresIds)
         return convertedMovie
     }
+    
+    public func movieSearchResultToMovieIndividual(movieSearch: MovieSR) -> Movie {
+        var genresIds: [Int] = []
+        for genre in movieSearch.genreIds {
+            genresIds.append(genre)
+        }
+        let convertedMovie = Movie(id: movieSearch.id, title: movieSearch.title, posterPath: movieSearch.posterPath, overview: movieSearch.overview, releaseDate: movieSearch.releaseDate, voteAverage: movieSearch.voteAverage, genreIds: genresIds)
+        return convertedMovie
+    }
 
     public func moviesInTheatres() async throws -> [Movie] {
         let url: URL = url(.moviesInTheatres)
@@ -212,14 +221,14 @@ class Repository {
     }
     
     //Función para buscar películas
-    public func searchMovies(searchText: String) async throws -> [Movie] {
+    public func searchMovies(searchText: String) async throws -> [MovieSR] {
         guard let url: URL = urlSearchMovies(.movieSearch, text: searchText) else { return [] }
         print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let response = try await URLSession.shared.data(for: request)
         let data: Data = response.0
-        let result = try decoder.decode(ResponseMovies.self, from: data)
+        let result = try decoder.decode(ResponseMoviesSearchResult.self, from: data)
         return result.results
     }
     

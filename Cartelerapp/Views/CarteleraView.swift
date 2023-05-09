@@ -68,7 +68,6 @@ struct CarteleraView: View {
             ToolbarItem(placement: .principal) {
                 Image("Logo")
             }
-            
         }
     }
     

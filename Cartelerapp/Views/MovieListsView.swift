@@ -75,7 +75,6 @@ struct MovieListsView: View {
                             }
                             .frame(minWidth:32, minHeight:135.05)
                             .cornerRadius(8)
-                            //.padding(8)
                             
                             
                             VStack(alignment: .leading, spacing: 4){

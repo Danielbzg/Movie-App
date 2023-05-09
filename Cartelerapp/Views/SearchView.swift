@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchText = ""
-    @State private var movies: [Movie] = []
+    @State private var movies: [MovieSR] = []
     
     var body: some View {
         VStack{
@@ -19,7 +19,7 @@ struct SearchView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
-                    print("Valor de la variable text en la struct del SearchBar: \(searchText)")
+                    //print("Valor de la variable text en la struct del SearchBar: \(searchText)")
                     searchMoviesView()
                 }) {
                     Image(systemName: "magnifyingglass")
@@ -34,51 +34,68 @@ struct SearchView: View {
                         
                         NavigationLink {
                             
-                            MovieDetailView(movie: movieItem)
+                            MovieDetailView(movie: Dependencies.repository.movieSearchResultToMovieIndividual(movieSearch: movieItem))
                             
                         } label: {
-                            
-                            VStack(spacing: 2){
-                                Text(String(movieItem.releaseDate))
-                                    .frame(width: 140, height: 20, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
-                                
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                    
-                                } placeholder: {
-                                    
-                                    ProgressView()
-                                    
+                            HStack(spacing: 16){
+                                VStack(alignment: .center){
+                                    AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "")) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .cornerRadius(12)
+                                        
+                                    } placeholder: {
+                                        
+                                        ProgressView()
+                                            .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height * 0.2, alignment: .center)
+                                        
+                                    }
                                 }
-                                .frame(maxWidth: .infinity, maxHeight: 200)
+                                .frame(minWidth:32, minHeight:135.05)
                                 .cornerRadius(8)
                                 
-                                Text(movieItem.title)
-                                    .frame(width: 140, height: 50, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
                                 
-                            }
-                            .frame(width: 150, height: 275, alignment: .trailing)
-                            .background(Color(red: 21/255, green: 21/255, blue: 85/255).opacity(0.8))
-                            .cornerRadius(8)
+                                VStack(alignment: .leading, spacing: 4){
+                                    Text(movieItem.title)
+                                        .font(.callout.bold())
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(Color.dsTitle)
+                                    HStack{
+                                        Image(systemName: "film")
+                                            .foregroundColor(Color.dsSecondary)
+                                        Text(String(movieItem.releaseDate))
+                                            .font(.footnote)
+                                            .foregroundColor(Color.dsSecondary)
+                                    }
+                                    HStack{
+                                        Image(systemName: "clock")
+                                            .foregroundColor(Color.dsSecondary)
+                                        Text(String(movieItem.title) + " min.")
+                                            .font(.footnote)
+                                            .foregroundColor(Color.dsSecondary)
+                                    }
+                                    
+                                }
+                                .foregroundColor(.white)
+                                .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                            }.padding(8)
                         }
                     }
-                    .frame(maxWidth: .infinity)
+                    .padding(8)
+                    .background(Color.dsBackgroundList)
+                    .frame(width: UIScreen.main.bounds.width * 0.9)
+                    .cornerRadius(12)
                 }
             }
         }
-        .navigationTitle("Buscador")
+        .background(Color.dsMain)
+        .navigationTitle("")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image("Logo")
+            }
+        }
     }
     
     func searchMoviesView() {
