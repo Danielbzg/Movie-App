@@ -15,28 +15,42 @@ struct MovieListsView: View {
     
     var body: some View {
         VStack{
-            VStack{
+            HStack{
+                Text("Mis Listas")
+            }.foregroundColor(Color.dsTitle)
+                .font(.title)
+                .frame(width: UIScreen.main.bounds.width, height: 50, alignment: .top)
+                .padding(0)
+            VStack {
                 Picker("", selection: $selected) {
-                    Text("Favoritas").tag(0).foregroundColor(Color.dsTitle) .background(Color.dsBackgroundList)
-                    Text("Pendientes").tag(1).foregroundColor(Color.dsTitle) .background(Color.dsBackgroundList)
-                }.pickerStyle(.segmented)
+                    Text("Favoritas").tag(0)
+                    Text("Pendientes").tag(1)
+                }
+                .pickerStyle(.segmented)
+                .accentColor(.blue)
+                .cornerRadius(8)
+                .frame(width: UIScreen.main.bounds.width * 0.9)
+                .background(Color.dsBackgroundList) // color de fondo del picker completo
+                .foregroundColor(.white) // color de texto del picker completo
                 
-                
+                if selected == 0{
+                    favourites
+                }
+                if selected == 1{
+                    pending
+                }
             }
-            if selected == 0{
-                favourites
-            }
-            if selected == 1{
-                pending
-            }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .background(Color.dsMain)
+                .onAppear { LoadFavouritesMovies()
+                    LoadPendingMovies()
+                }
+                .navigationBarHidden(true)
+        }
             .background(Color.dsMain)
-            .onAppear { LoadFavouritesMovies()
-                LoadPendingMovies()
-            }
-            .navigationTitle("Mis listas")
+        
+        
     }
-    
     var favourites: some View {
         ScrollView(.vertical){
             ForEach(moviesFavourites) {movieItem in
@@ -48,16 +62,16 @@ struct MovieListsView: View {
                         HStack(spacing: 16){
                             VStack(alignment: .center){
                                 AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
-                                                                image
-                                                                    .resizable()
-                                                                    .aspectRatio(contentMode: .fit)
-                                                                    .cornerRadius(12)
-                                                                
-                                                            } placeholder: {
-                                                                
-                                                                ProgressView()
-                                                                
-                                                            }
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(12)
+                                    
+                                } placeholder: {
+                                    
+                                    ProgressView()
+                                    
+                                }
                             }
                             .frame(minWidth:32, minHeight:135.05)
                             .cornerRadius(8)
@@ -109,16 +123,16 @@ struct MovieListsView: View {
                         HStack(spacing: 16){
                             VStack(alignment: .center){
                                 AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
-                                                                image
-                                                                    .resizable()
-                                                                    .aspectRatio(contentMode: .fit)
-                                                                    .cornerRadius(12)
-                                                                
-                                                            } placeholder: {
-                                                                
-                                                                ProgressView()
-                                                                
-                                                            }
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(12)
+                                    
+                                } placeholder: {
+                                    
+                                    ProgressView()
+                                    
+                                }
                             }
                             .frame(minWidth:32, minHeight:135.05)
                             .cornerRadius(8)
