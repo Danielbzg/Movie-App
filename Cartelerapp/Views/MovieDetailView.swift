@@ -184,7 +184,7 @@ struct MovieDetailView: View {
                         }
                     }
                     )
-                    .frame(minWidth: 350, alignment: .center)
+                        .frame(minWidth: UIScreen.main.bounds.width * 0.9, alignment: .center)
                 }
             }
         }

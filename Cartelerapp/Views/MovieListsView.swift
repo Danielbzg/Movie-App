@@ -24,118 +24,10 @@ struct MovieListsView: View {
                 
             }
             if selected == 0{
-                ScrollView(.vertical){
-                    ForEach(moviesFavourites) {movieItem in
-                        VStack{
-                            NavigationLink {
-                                MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
-                                
-                            } label: {
-                                HStack(spacing: 16){
-                                    AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .cornerRadius(12)
-                                        
-                                    } placeholder: {
-                                        
-                                        ProgressView()
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, maxHeight: 200)
-                                    .cornerRadius(8)
-                                    
-                                    VStack(alignment: .leading, spacing: 4){
-                                        Text(movieItem.title)
-                                            .font(.callout.bold())
-                                            .foregroundColor(Color.dsTitle)
-                                        HStack{
-                                            Image(systemName: "film")
-                                                .foregroundColor(Color.dsSecondary)
-                                            Text(String(movieItem.formattedReleaseDate ?? ""))
-                                                .font(.footnote)
-                                                .foregroundColor(Color.dsSecondary)
-                                        }
-                                        HStack{
-                                            Image(systemName: "clock")
-                                                .foregroundColor(Color.dsSecondary)
-                                            Text(String(movieItem.runtime) + " min.")
-                                                .font(.footnote)
-                                                .foregroundColor(Color.dsSecondary)
-                                        }
-                                        
-                                    }
-                                    .foregroundColor(.white)
-                                    .frame(width: 240, height: 86, alignment: .leading)
-                                }
-                                .padding(8)
-                            }
-                            
-                        }
-                        //.padding(8)
-                        .background(Color.dsBackgroundList)
-                        .cornerRadius(12)
-                    }
-                }.padding(8)
+                favourites
             }
             if selected == 1{
-                ScrollView(.vertical){
-                    ForEach(moviesPending) {movieItem in
-                        VStack{
-                            NavigationLink {
-                                
-                                MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
-                                
-                            } label: {
-                                HStack(spacing: 16){
-                                    AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .cornerRadius(12)
-                                        
-                                    } placeholder: {
-                                        
-                                        ProgressView()
-                                        
-                                    }
-                                    .frame(maxWidth: .infinity, maxHeight: 200)
-                                    .cornerRadius(8)
-                                    
-                                    VStack(alignment: .leading, spacing: 4){
-                                        Text(movieItem.title)
-                                            .font(.callout.bold())
-                                            .foregroundColor(Color.dsTitle)
-                                        HStack{
-                                            Image(systemName: "film")
-                                                .foregroundColor(Color.dsSecondary)
-                                            Text(String(movieItem.formattedReleaseDate ?? ""))
-                                                .font(.footnote)
-                                                .foregroundColor(Color.dsSecondary)
-                                        }
-                                        HStack{
-                                            Image(systemName: "clock").foregroundColor(Color.dsSecondary)
-                                            Text(String(movieItem.runtime)  + " min.")
-                                                .font(.footnote)
-                                                .foregroundColor(Color.dsSecondary)
-                                        }
-                                        
-                                        
-                                        
-                                    }
-                                    .foregroundColor(.white)
-                                    .frame(width: 240, height: 86, alignment: .leading)
-                                }
-                                .padding(8)
-                                
-                            }
-                        }
-                        //.padding(8)
-                        .background(Color.dsBackgroundList)
-                        .cornerRadius(12)
-                    }
-                }.padding(8)
+                pending
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color.dsMain)
@@ -145,7 +37,128 @@ struct MovieListsView: View {
             .navigationTitle("Mis listas")
     }
     
+    var favourites: some View {
+        ScrollView(.vertical){
+            ForEach(moviesFavourites) {movieItem in
+                VStack{
+                    NavigationLink {
+                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        
+                    } label: {
+                        HStack(spacing: 16){
+                            VStack(alignment: .center){
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
+                                                                image
+                                                                    .resizable()
+                                                                    .aspectRatio(contentMode: .fit)
+                                                                    .cornerRadius(12)
+                                                                
+                                                            } placeholder: {
+                                                                
+                                                                ProgressView()
+                                                                
+                                                            }
+                            }
+                            .frame(minWidth:32, minHeight:135.05)
+                            .cornerRadius(8)
+                            //.padding(8)
+                            
+                            
+                            VStack(alignment: .leading, spacing: 4){
+                                Text(movieItem.title)
+                                    .font(.callout.bold())
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(Color.dsTitle)
+                                HStack{
+                                    Image(systemName: "film")
+                                        .foregroundColor(Color.dsSecondary)
+                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                        .font(.footnote)
+                                        .foregroundColor(Color.dsSecondary)
+                                }
+                                HStack{
+                                    Image(systemName: "clock")
+                                        .foregroundColor(Color.dsSecondary)
+                                    Text(String(movieItem.runtime) + " min.")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.dsSecondary)
+                                }
+                                
+                            }
+                            .foregroundColor(.white)
+                            .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                        }.padding(8)
+                    }
+                    
+                }
+                .padding(8)
+                .background(Color.dsBackgroundList)
+                .cornerRadius(12)
+            }
+        }.padding(8)
+    }
     
+    var pending: some View {
+        ScrollView(.vertical){
+            ForEach(moviesPending) {movieItem in
+                VStack{
+                    NavigationLink {
+                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        
+                    } label: {
+                        HStack(spacing: 16){
+                            VStack(alignment: .center){
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath)) { image in
+                                                                image
+                                                                    .resizable()
+                                                                    .aspectRatio(contentMode: .fit)
+                                                                    .cornerRadius(12)
+                                                                
+                                                            } placeholder: {
+                                                                
+                                                                ProgressView()
+                                                                
+                                                            }
+                            }
+                            .frame(minWidth:32, minHeight:135.05)
+                            .cornerRadius(8)
+                            //.padding(8)
+                            
+                            
+                            VStack(alignment: .leading, spacing: 4){
+                                Text(movieItem.title)
+                                    .font(.callout.bold())
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(Color.dsTitle)
+                                HStack{
+                                    Image(systemName: "film")
+                                        .foregroundColor(Color.dsSecondary)
+                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                        .font(.footnote)
+                                        .foregroundColor(Color.dsSecondary)
+                                }
+                                HStack{
+                                    Image(systemName: "clock")
+                                        .foregroundColor(Color.dsSecondary)
+                                    Text(String(movieItem.runtime) + " min.")
+                                        .font(.footnote)
+                                        .foregroundColor(Color.dsSecondary)
+                                }
+                                
+                            }
+                            .foregroundColor(.white)
+                            .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                        }.padding(8)
+                    }
+                    
+                }
+                .padding(8)
+                .background(Color.dsBackgroundList)
+                .cornerRadius(12)
+            }
+        }.padding(8)
+    }
+    //ForEach(moviesPending) {movieItem in
     func LoadFavouritesMovies() {
         Task {
             do {
