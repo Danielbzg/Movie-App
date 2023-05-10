@@ -9,7 +9,7 @@ import Foundation
 
 struct MovieDetails: Codable, Identifiable {
     let adult: Bool
-    let backdropPath: String
+    let backdropPath: String?
     let budget: Int
     let genres: [Genres]
     let homepage: String

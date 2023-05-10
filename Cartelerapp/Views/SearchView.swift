@@ -9,7 +9,7 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
     @State private var movies: [MovieSR] = []
-    @State private var details: Int = 0
+    @State private var moviesDuration: [Int: Int] = [:]
     
     var body: some View {
         VStack{
@@ -68,19 +68,21 @@ struct SearchView: View {
                                             .font(.footnote)
                                             .foregroundColor(Color.dsSecondary)
                                     }
-                                    HStack{
-                                        Image(systemName: "clock")
-                                            .foregroundColor(Color.dsSecondary)
-                                        Text(String(details) + " min.")
-                                            .font(.footnote)
-                                            .foregroundColor(Color.dsSecondary)
-                                        
-                                    }
-                                    .task {
-                                        await loadDetails(id: movieItem.id)
+                                    if let duration = moviesDuration[movieItem.id] {
+                                        HStack{
+                                            Image(systemName: "clock")
+                                                .foregroundColor(Color.dsSecondary)
+                                            Text(String(duration) + " min.")
+                                                .font(.footnote)
+                                                .foregroundColor(Color.dsSecondary)
+
                                         }
-                                }.foregroundColor(.white)
-                                    .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                                    }
+
+                                }
+                                .task { await loadDetails(id: movieItem.id) }
+                                .foregroundColor(.white)
+                                .frame(minWidth: 200, minHeight: 86, alignment: .leading)
                                 
                             }.padding(8)
                             
@@ -109,21 +111,21 @@ struct SearchView: View {
                 print("El texto a buscar es \(self.searchText)")
                 let movies = try await Dependencies.repository.searchMovies(searchText: self.searchText)
                 print(movies)
+                self.moviesDuration = [:]
                 self.movies = movies
             } catch {
                 print(error)
             }
         }
     }
-    func loadDetails(id: Int) async -> Int {
+    func loadDetails(id: Int) async {
         do {
             let detailsSearch = try await Dependencies.repository.moviesDetails(id: id)
             print(detailsSearch)
-            self.details = detailsSearch.duration
-            return self.details
+            self.moviesDuration[id] = detailsSearch.duration
+            print(moviesDuration)
         } catch {
             print(error)
-            return 0
         }
     }
     
