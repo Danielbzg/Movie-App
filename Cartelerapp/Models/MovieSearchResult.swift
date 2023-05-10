@@ -28,3 +28,15 @@ struct MovieSR: Codable, Identifiable {
     let voteAverage: Double
     let voteCount: Int
 }
+
+extension MovieSR {
+
+    var apiReleaseDate: Date? {
+        DateFormatter.apiFormatter.date(from: releaseDate)
+    }
+
+    var formattedReleaseDate: String? {
+        guard let apiReleaseDate = apiReleaseDate else { return nil }
+        return DateFormatter.appFormatter.string(from: apiReleaseDate)
+    }
+}

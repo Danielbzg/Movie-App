@@ -70,10 +70,11 @@ struct MovieListsView: View {
                                 } placeholder: {
                                     
                                     ProgressView()
+                                        .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height * 0.2, alignment: .center)
                                     
                                 }
                             }
-                            .frame(minWidth:32, minHeight:135.05)
+                            .frame(minWidth:32, maxWidth: 152, minHeight:135.05, maxHeight: 255.05)
                             .cornerRadius(8)
                             
                             
@@ -85,7 +86,7 @@ struct MovieListsView: View {
                                 HStack{
                                     Image(systemName: "film")
                                         .foregroundColor(Color.dsSecondary)
-                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                    Text(String(movieItem.formattedReleaseDate ?? "N/A"))
                                         .font(.footnote)
                                         .foregroundColor(Color.dsSecondary)
                                 }
@@ -146,7 +147,7 @@ struct MovieListsView: View {
                                 HStack{
                                     Image(systemName: "film")
                                         .foregroundColor(Color.dsSecondary)
-                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                    Text(String(movieItem.formattedReleaseDate ?? "N/A"))
                                         .font(.footnote)
                                         .foregroundColor(Color.dsSecondary)
                                 }

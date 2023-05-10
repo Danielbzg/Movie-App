@@ -1,4 +1,3 @@
-//
 //  SearchView.swift
 //  Cartelerapp
 //
@@ -10,6 +9,7 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
     @State private var movies: [MovieSR] = []
+    @State private var details: Int = 0
     
     var body: some View {
         VStack{
@@ -52,7 +52,7 @@ struct SearchView: View {
                                         
                                     }
                                 }
-                                .frame(minWidth:32, minHeight:135.05)
+                                .frame(minWidth:32, maxWidth: 152, minHeight:135.05, maxHeight: 255.05)
                                 .cornerRadius(8)
                                 
                                 
@@ -64,31 +64,37 @@ struct SearchView: View {
                                     HStack{
                                         Image(systemName: "film")
                                             .foregroundColor(Color.dsSecondary)
-                                        Text(String(movieItem.releaseDate))
+                                        Text(String(movieItem.formattedReleaseDate ?? "N/A"))
                                             .font(.footnote)
                                             .foregroundColor(Color.dsSecondary)
                                     }
                                     HStack{
                                         Image(systemName: "clock")
                                             .foregroundColor(Color.dsSecondary)
-                                        Text(String(movieItem.title) + " min.")
+                                        Text(String(details) + " min.")
                                             .font(.footnote)
                                             .foregroundColor(Color.dsSecondary)
+                                        
                                     }
-                                    
-                                }
-                                .foregroundColor(.white)
-                                .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                                    .task {
+                                        await loadDetails(id: movieItem.id)
+                                        }
+                                }.foregroundColor(.white)
+                                    .frame(minWidth: 200, minHeight: 86, alignment: .leading)
+                                
                             }.padding(8)
+                            
                         }
                     }
-                    .padding(8)
-                    .background(Color.dsBackgroundList)
-                    .frame(width: UIScreen.main.bounds.width * 0.9)
-                    .cornerRadius(12)
+                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                        .padding(8)
+                        .background(Color.dsBackgroundList)
+                        .cornerRadius(12)
                 }
-            }
+                
+            }.padding(8)
         }
+        
         .background(Color.dsMain)
         .navigationTitle("")
         .toolbar {
@@ -97,7 +103,6 @@ struct SearchView: View {
             }
         }
     }
-    
     func searchMoviesView() {
         Task {
             do {
@@ -110,6 +115,18 @@ struct SearchView: View {
             }
         }
     }
+    func loadDetails(id: Int) async -> Int {
+        do {
+            let detailsSearch = try await Dependencies.repository.moviesDetails(id: id)
+            print(detailsSearch)
+            self.details = detailsSearch.duration
+            return self.details
+        } catch {
+            print(error)
+            return 0
+        }
+    }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {
@@ -117,4 +134,3 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
-
