@@ -95,6 +95,21 @@ class Repository {
         }
     }
     
+    public func getFavouritesMovies() async throws -> [MovieDetails] {
+        let favouritesMovies = UserDefaults.standard.favouritesMovies
+        var moviesResult: [MovieDetails] = []
+        for item in favouritesMovies {
+            do {
+                let movieDetails = try await moviesIndividual(id: item)
+                moviesResult.append(movieDetails)
+            } catch {
+                // Manejo de errores aquí
+                print("Error obteniendo detalles de la película: \(error)")
+            }
+        }
+        return moviesResult
+    }
+    
     public func pendingMovies() -> [Int] {
         UserDefaults.standard.pendingMovies
     }
@@ -112,6 +127,35 @@ class Repository {
             UserDefaults.standard.pendingMovies = pendingMovies
         }
     }
+    
+    public func getPendingMovies() async throws -> [MovieDetails] {
+        let pendingMovies = UserDefaults.standard.pendingMovies
+        var moviesResult: [MovieDetails] = []
+        for item in pendingMovies {
+            do {
+                let movieDetails = try await moviesIndividual(id: item)
+                moviesResult.append(movieDetails)
+            } catch {
+                // Manejo de errores aquí
+                print("Error obteniendo detalles de la película: \(error)")
+            }
+        }
+        return moviesResult
+    }
+    
+    public func movieDetailsToMovieIndividual(movieDetails: MovieDetails) -> Movie {
+        var genresIds: [Int] = movieDetails.genres.map { $0.id }
+        let convertedMovie = Movie(
+            id: movieDetails.id,
+            title: movieDetails.title,
+            posterPath: movieDetails.posterPath,
+            overview: movieDetails.overview,
+            releaseDate: movieDetails.releaseDate,
+            voteAverage: movieDetails.voteAverage,
+            genreIds: genresIds
+        )
+        return convertedMovie
+    }
 
     public func moviesInTheatres() async throws -> [Movie] {
         let url: URL = url(.moviesInTheatres)
@@ -122,6 +166,18 @@ class Repository {
         let data: Data = response.0
         let result = try decoder.decode(ResponseMovies.self, from: data)
         return result.results
+    }
+    
+    //Función para consultar en la API los Detalles de la película
+    public func moviesIndividual(id: Int) async throws -> MovieDetails {
+        let url: URL = urlMDetails(.movieIndividual, idMovie: id)
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let response = try await URLSession.shared.data(for: request)
+        let data: Data = response.0
+        let result = try decoder.decode(MovieDetails.self, from: data)
+        return result
     }
     
     //Función para consultar en la API los Detalles de la película

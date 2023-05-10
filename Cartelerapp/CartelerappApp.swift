@@ -12,12 +12,12 @@ import FirebaseCrashlytics
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
         return true
     }
-}
+
 
 
 @main
@@ -36,11 +36,7 @@ struct CartelerappApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                Color.blue // establece el color de fondo del ZStack
-                    .ignoresSafeArea()
                 TabView {
-                    
                     NavigationView {
                         CarteleraView()
                     }
@@ -57,11 +53,11 @@ struct CartelerappApp: App {
                     }
                     
                     NavigationView {
-                        SearchView()
+                        MovieListsView()
                     }
                     
                     .tabItem {
-                        Label("Mis listas", systemImage: "text.alignleft")
+                        Label("Mis Listas", systemImage: "text.alignleft")
                     }
                 }
             }
