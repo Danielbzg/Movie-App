@@ -56,7 +56,7 @@ struct MovieListsView: View {
             ForEach(moviesFavourites) {movieItem in
                 VStack{
                     NavigationLink {
-                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        MovieDetailView(movie: movieItem.toMovie)
                         
                     } label: {
                         HStack(spacing: 16){
@@ -70,12 +70,12 @@ struct MovieListsView: View {
                                 } placeholder: {
                                     
                                     ProgressView()
+                                        .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.height * 0.2, alignment: .center)
                                     
                                 }
                             }
-                            .frame(minWidth:32, minHeight:135.05)
+                            .frame(minWidth:32, maxWidth: 152, minHeight:135.05, maxHeight: 255.05)
                             .cornerRadius(8)
-                            //.padding(8)
                             
                             
                             VStack(alignment: .leading, spacing: 4){
@@ -86,7 +86,7 @@ struct MovieListsView: View {
                                 HStack{
                                     Image(systemName: "film")
                                         .foregroundColor(Color.dsSecondary)
-                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                    Text(String(movieItem.formattedReleaseDate ?? "N/A"))
                                         .font(.footnote)
                                         .foregroundColor(Color.dsSecondary)
                                 }
@@ -114,10 +114,10 @@ struct MovieListsView: View {
     
     var pending: some View {
         ScrollView(.vertical){
-            ForEach(moviesPending) {movieItem in
+            ForEach(moviesPending) { movieItem in
                 VStack{
                     NavigationLink {
-                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        MovieDetailView(movie: movieItem.toMovie)
                         
                     } label: {
                         HStack(spacing: 16){
@@ -147,7 +147,7 @@ struct MovieListsView: View {
                                 HStack{
                                     Image(systemName: "film")
                                         .foregroundColor(Color.dsSecondary)
-                                    Text(String(movieItem.formattedReleaseDate ?? ""))
+                                    Text(String(movieItem.formattedReleaseDate ?? "N/A"))
                                         .font(.footnote)
                                         .foregroundColor(Color.dsSecondary)
                                 }
