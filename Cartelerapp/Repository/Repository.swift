@@ -109,7 +109,6 @@ class Repository {
         }
         return moviesResult
     }
-
     
     public func pendingMovies() -> [Int] {
         UserDefaults.standard.pendingMovies
@@ -145,11 +144,16 @@ class Repository {
     }
     
     public func movieDetailsToMovieIndividual(movieDetails: MovieDetails) -> Movie {
-        var genresIds: [Int] = []
-        for genre in movieDetails.genres {
-            genresIds.append(genre.id)
-        }
-        let convertedMovie = Movie(id: movieDetails.id, title: movieDetails.title, posterPath: movieDetails.posterPath, overview: movieDetails.overview, releaseDate: movieDetails.releaseDate, voteAverage: movieDetails.voteAverage, genreIds: genresIds)
+        var genresIds: [Int] = movieDetails.genres.map { $0.id }
+        let convertedMovie = Movie(
+            id: movieDetails.id,
+            title: movieDetails.title,
+            posterPath: movieDetails.posterPath,
+            overview: movieDetails.overview,
+            releaseDate: movieDetails.releaseDate,
+            voteAverage: movieDetails.voteAverage,
+            genreIds: genresIds
+        )
         return convertedMovie
     }
 
