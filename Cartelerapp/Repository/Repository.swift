@@ -143,26 +143,8 @@ class Repository {
         return moviesResult
     }
     
-    public func movieDetailsToMovieIndividual(movieDetails: MovieDetails) -> Movie {
-        var genresIds: [Int] = movieDetails.genres.map { $0.id }
-        let convertedMovie = Movie(
-            id: movieDetails.id,
-            title: movieDetails.title,
-            posterPath: movieDetails.posterPath,
-            overview: movieDetails.overview,
-            releaseDate: movieDetails.releaseDate,
-            voteAverage: movieDetails.voteAverage,
-            genreIds: genresIds
-        )
-        return convertedMovie
-    }
-    
     public func movieSearchResultToMovieIndividual(movieSearch: MovieSR) -> Movie {
-        var genresIds: [Int] = []
-        for genre in movieSearch.genreIds {
-            genresIds.append(genre)
-        }
-        let convertedMovie = Movie(id: movieSearch.id, title: movieSearch.title, posterPath: movieSearch.posterPath, overview: movieSearch.overview, releaseDate: movieSearch.releaseDate, voteAverage: movieSearch.voteAverage, genreIds: genresIds)
+        let convertedMovie = Movie(id: movieSearch.id, title: movieSearch.title, posterPath: movieSearch.posterPath, overview: movieSearch.overview, releaseDate: movieSearch.releaseDate, voteAverage: movieSearch.voteAverage, genreIds: movieSearch.genreIds)
         return convertedMovie
     }
 

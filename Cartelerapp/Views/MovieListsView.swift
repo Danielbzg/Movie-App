@@ -56,7 +56,7 @@ struct MovieListsView: View {
             ForEach(moviesFavourites) {movieItem in
                 VStack{
                     NavigationLink {
-                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        MovieDetailView(movie: movieItem.toMovie)
                         
                     } label: {
                         HStack(spacing: 16){
@@ -114,10 +114,10 @@ struct MovieListsView: View {
     
     var pending: some View {
         ScrollView(.vertical){
-            ForEach(moviesPending) {movieItem in
+            ForEach(moviesPending) { movieItem in
                 VStack{
                     NavigationLink {
-                        MovieDetailView(movie: Dependencies.repository.movieDetailsToMovieIndividual(movieDetails: movieItem))
+                        MovieDetailView(movie: movieItem.toMovie)
                         
                     } label: {
                         HStack(spacing: 16){
