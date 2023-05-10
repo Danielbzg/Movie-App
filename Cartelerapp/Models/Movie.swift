@@ -24,7 +24,7 @@ extension Movie {
     }
 
     var formattedReleaseDate: String? {
-        guard let apiReleaseDate else { return nil }
+        guard let apiReleaseDate = apiReleaseDate else { return nil }
         return DateFormatter.appFormatter.string(from: apiReleaseDate)
     }
 }

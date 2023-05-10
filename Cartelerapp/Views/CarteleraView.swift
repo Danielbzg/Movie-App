@@ -8,70 +8,70 @@
 import SwiftUI
 
 struct CarteleraView: View {
-
+    
     @State private var movies: [Movie] = []
-
+    
     var body: some View {
-
+        
         ScrollView(.vertical) {
-
-            LazyVGrid(columns: [GridItem(.flexible(minimum:110), spacing: 1), GridItem(.flexible(minimum:150), spacing: 0)], content:  {
-
+            
+            LazyVGrid(columns: [GridItem(.fixed(163), spacing:17), GridItem(.fixed(163), spacing: 17)], content:  {
+                
                 ForEach(movies) { movieItem in
-
+                    
                     VStack{
-
+                        
                         NavigationLink {
-
+                            
                             MovieDetailView(movie: movieItem)
-
+                            
                         } label: {
-
-                            VStack(spacing: 2){
-                                Text(String(movieItem.releaseDate))
-                                    .frame(width: 140, height: 20, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
+                            
+                            VStack(spacing: 8){
                                 
-                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "PosterDefault")) { image in
+                                AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "")) { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 163, height: 241)
                                         .cornerRadius(25)
-
+                                    
                                 } placeholder: {
-
+                                    
                                     ProgressView()
-
+                                    
                                 }
-                                .frame(maxWidth: .infinity, maxHeight: 200)
-                                .cornerRadius(8)
                                 
-                                Text(movieItem.title)
-                                    .frame(width: 140, height: 50, alignment: .center)
-                                    .padding(0.2)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(8)
-                                
+                                VStack(spacing: 4){
+                                    Text(movieItem.title)
+                                        .frame(maxWidth: 120, maxHeight: 40, alignment: .init(horizontal: .leading, vertical: .top))
+                                        .font(.subheadline.bold())
+                                        .foregroundColor(Color.dsLongText)
+                                    
+                                    Text("\(movieItem.formattedReleaseDate ?? "")")
+                                        .frame(width: 120, height: 20, alignment: .init(horizontal: .leading, vertical: .top))
+                                        .font(.footnote)
+                                        .foregroundColor(Color.dsSecondary)
+                                }
+                                .multilineTextAlignment(.leading)
                             }
-                            .frame(width: 150, height: 275, alignment: .trailing)
-                            .background(Color(red: 21/255, green: 21/255, blue: 85/255).opacity(0.8))
-                                .cornerRadius(8)
-                        }
+                        }.frame(width: 163, height: 311, alignment: .init(horizontal: .leading, vertical: .top))
+                            //.background(.yellow)
                     }
                 }
-            })//Espacios de los Posters y títulos
+            })
         }
-        .background(LinearGradient(colors: [Color(red: 63/255, green: 132/255, blue: 229/255), Color(red: 24/255, green: 48/255, blue: 89/255)], startPoint: .top, endPoint: .center))
+        .background(Color.dsMain)
         .onAppear {moviesInTheatres()}
         .navigationTitle("")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image("Logo")
+            }
+            
+        }
     }
-
+    
     
     func moviesInTheatres() {
         Task {
