@@ -48,7 +48,7 @@
 		C2695B8629E400620065D916 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		C2695B8829E401050065D916 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		C2EEB2542A0261A5003B9A72 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
-		D01FB97129D4409500D01536 /* Cartelerapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartelerapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D01FB97129D4409500D01536 /* Cartelerapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Cartelerapp.app; path = "Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01FB97429D4409500D01536 /* CartelerappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartelerappApp.swift; sourceTree = "<group>"; };
 		D01FB97829D4409B00D01536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D01FB97B29D4409B00D01536 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -100,14 +100,6 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		C2F4C2302A0B9F2600F85F01 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C2F4C2312A0B9F3F00F85F01 /* MovieDetails+Extras.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		D01FB96829D4409500D01536 = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +112,7 @@
 		D01FB97229D4409500D01536 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D01FB97129D4409500D01536 /* Movie App.app */,
+				D01FB97129D4409500D01536 /* Cartelerapp.app */,
 				D0443D0729F7DC4B002313ED /* CartelerappTests.xctest */,
 			);
 			name = Products;
@@ -225,7 +217,7 @@
 				D0BC833F29FC7882004A83F2 /* FirebaseCrashlytics */,
 			);
 			productName = Cartelerapp;
-			productReference = D01FB97129D4409500D01536 /* Movie App.app */;
+			productReference = D01FB97129D4409500D01536 /* Cartelerapp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D0443D0629F7DC4B002313ED /* CartelerappTests */ = {
@@ -334,7 +326,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2F4C2322A0B9F3F00F85F01 /* MovieDetails+Extras.swift in Sources */,
 				C2695B8729E400620065D916 /* Dependencies.swift in Sources */,
 				D02EE3C72A0FB36700AC3990 /* MovieDetails.swift in Sources */,
 				D02EE3CA2A0FB36700AC3990 /* Response.swift in Sources */,
@@ -564,7 +555,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cartelerapp.app/Cartelerapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movie App.app/Movie App";
 			};
 			name = Debug;
 		};
@@ -581,7 +572,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cartelerapp.app/Cartelerapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movie App.app/Movie App";
 			};
 			name = Release;
 		};
