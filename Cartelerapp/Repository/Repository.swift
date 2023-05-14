@@ -26,7 +26,8 @@ enum MoviesAPI {
     
 }
 
-//Creación de getter y setter de algunas funciones
+/* Ampliación del UserDefaults para añadir la creación de
+ getter y setter de funciones favoritas y pendientes */
 extension UserDefaults {
 
     var favouritesMovies: [Int] {
@@ -73,15 +74,13 @@ class Repository {
         self.apiKey = apiKey
     }
     
-    private func setMoviesFavourites(newMovies: [Movie]) {
-        self.moviesFavourite = newMovies
-    }
-    
     //Función para la creación de url y consultar películas en cartelera
     private func url(_ endpoint: MoviesAPI.Endpoint) -> URL {
         URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
     
+    /*Inicialización de función de películas favoritas con la llamada a
+     la extensión creadas previamente*/
     public func favouritesMovies() -> [Int] {
         UserDefaults.standard.favouritesMovies
     }
@@ -118,6 +117,8 @@ class Repository {
         return moviesResult
     }
    
+    /*Inicialización de función de películas pendientes con la llamada a
+     la extensión creadas previamente*/
     public func pendingMovies() -> [Int] {
         UserDefaults.standard.pendingMovies
     }
