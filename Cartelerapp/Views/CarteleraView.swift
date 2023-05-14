@@ -2,7 +2,7 @@
 //  Cartelera.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 31/3/23.
+//  Created by Daniel Boza García on 31/3/23.
 //
 
 import SwiftUI
@@ -14,15 +14,15 @@ struct CarteleraView: View {
     var body: some View {
         
         ScrollView(.vertical) {
-            
+            // Grid de dos columnas para colocar las películas
             LazyVGrid(columns: [GridItem(.fixed(163), spacing:17), GridItem(.fixed(163), spacing: 17)], content:  {
                 
                 ForEach(movies) { movieItem in
                     
                     VStack{
-                        
+                        //Enlace que tendrá cada película del ForEach
                         NavigationLink {
-                            
+                            //Creará una vista de detalle con la película que se le pase
                             MovieDetailView(movie: movieItem)
                             
                         } label: {
@@ -56,7 +56,6 @@ struct CarteleraView: View {
                                 .multilineTextAlignment(.leading)
                             }
                         }.frame(width: 163, height: 311, alignment: .init(horizontal: .leading, vertical: .top))
-                            //.background(.yellow)
                     }
                 }
             })
@@ -71,7 +70,7 @@ struct CarteleraView: View {
         }
     }
     
-    
+    //Función exclusiva de la vista
     func moviesInTheatres() {
         Task {
             do {
@@ -85,6 +84,7 @@ struct CarteleraView: View {
     }
 }
 
+//Vista previa de la vista para usar en XCode
 struct Cartelera_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

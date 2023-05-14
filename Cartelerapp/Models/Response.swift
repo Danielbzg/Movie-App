@@ -2,7 +2,7 @@
 //  Response.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 4/4/23.
+//  Created by Daniel Boza García on 4/4/23.
 //
 
 import Foundation

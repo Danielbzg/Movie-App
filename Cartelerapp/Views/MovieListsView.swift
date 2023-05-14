@@ -2,7 +2,7 @@
 //  Cartelera.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 31/3/23.
+//  Created by Daniel Boza García on 31/3/23.
 //
 
 import SwiftUI
@@ -34,10 +34,13 @@ struct MovieListsView: View {
                 .foregroundColor(.white) // color de texto del picker completo
                 
                 if selected == 0{
+                    
                     favourites
+                    //Aquí se llama al código guardado en una variable más abajo para facilitar la lectura
                 }
                 if selected == 1{
                     pending
+                    //Aquí se llama al código guardado en una variable más abajo para facilitar la lectura
                 }
             }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -51,6 +54,8 @@ struct MovieListsView: View {
         
         
     }
+    
+    //Extracto de código que genera la lista de las películas favoritas
     var favourites: some View {
         ScrollView(.vertical){
             ForEach(moviesFavourites) {movieItem in
@@ -112,6 +117,7 @@ struct MovieListsView: View {
         }.padding(8)
     }
     
+    //Extracto de código que genera la lista de las películas pendientes
     var pending: some View {
         ScrollView(.vertical){
             ForEach(moviesPending) { movieItem in
@@ -136,8 +142,6 @@ struct MovieListsView: View {
                             }
                             .frame(minWidth:32, minHeight:135.05)
                             .cornerRadius(8)
-                            //.padding(8)
-                            
                             
                             VStack(alignment: .leading, spacing: 4){
                                 Text(movieItem.title)
@@ -172,7 +176,8 @@ struct MovieListsView: View {
             }
         }.padding(8)
     }
-    //ForEach(moviesPending) {movieItem in
+    
+    //Función para cargar películas favoritas
     func LoadFavouritesMovies() {
         Task {
             do {
@@ -184,6 +189,8 @@ struct MovieListsView: View {
             }
         }
     }
+    
+    //Función para cargar películas pendientes
     func LoadPendingMovies() {
         Task {
             do {
@@ -197,6 +204,7 @@ struct MovieListsView: View {
     }
 }
 
+//Vista previa de la vista para usar en XCode
 struct MovieListsView_Previews: PreviewProvider {
     static var previews: some View {
         MovieListsView()

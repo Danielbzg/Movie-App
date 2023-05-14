@@ -1,7 +1,7 @@
 //  SearchView.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 17/4/23.
+//  Created by Daniel Boza García on 17/4/23.
 //
 
 import SwiftUI
@@ -44,6 +44,7 @@ struct SearchView: View {
         .padding()
     }
     
+    //Extracto de código para generar las listas
     func movieListView() -> some View {
         ForEach(movies) { movieItem in
             VStack {
@@ -62,6 +63,7 @@ struct SearchView: View {
         }
     }
     
+    //Extracto de código para cargar imagen póster de la película
     func moviePosterView(movieItem: MovieSR) -> some View {
         VStack(alignment: .center) {
             AsyncImage(url: RemoteImage.movieImage(path: movieItem.posterPath ?? "")) { image in
@@ -78,12 +80,16 @@ struct SearchView: View {
         .cornerRadius(8)
     }
     
+    //Extracto de código para crear parte de la vista de detalles de la película
+    //Como son título, fecha de estreno, duración y sus respectivos logos acompañantes
     func movieDetailsView(movieItem: MovieSR) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(movieItem.title)
                 .font(.callout.bold())
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Color.dsTitle)
+            
+            //Fecha de estreno e icono de rollo de película
             HStack {
                 Image(systemName: "film")
                     .foregroundColor(Color.dsSecondary)
@@ -92,6 +98,7 @@ struct SearchView: View {
                     .foregroundColor(Color.dsSecondary)
             }
             if let duration = moviesDuration[movieItem.id] {
+                //duración e icono de reloj
                 HStack {
                     Image(systemName: "clock")
                         .foregroundColor(Color.dsSecondary)
@@ -106,6 +113,7 @@ struct SearchView: View {
         .frame(minWidth: 200, minHeight: 86, alignment: .leading)
     }
     
+    //Función para buscar película con el buscador
     func searchMoviesView() {
         Task {
             do {
@@ -118,6 +126,7 @@ struct SearchView: View {
         }
     }
     
+    //Función para usar la función de cargar detalles en la vista.
     func loadDetails(id: Int) async {
         do {
             let detailsSearch = try await Dependencies.repository.moviesDetails(id: id)
@@ -129,6 +138,7 @@ struct SearchView: View {
     }
 }
 
+//Vista previa de la vista para usar en XCode
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()

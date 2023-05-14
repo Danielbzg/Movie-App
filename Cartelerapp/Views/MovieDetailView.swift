@@ -2,7 +2,7 @@
 //  MovieDetailView.swift
 //  Cartelerapp
 //
-//  Created by Álvaro Murillo del Puerto on 10/4/23.
+//  Created by Daniel Boza García on 10/4/23.
 //
 
 import SwiftUI
@@ -126,6 +126,7 @@ struct MovieDetailView: View {
         }
     }
     
+    //Máscara de degradado del poster de la película
     var posterMaskGradient: some View {
         LinearGradient(
             gradient: Gradient(colors: [Color.red, Color.red, Color.red, Color.dsMain.opacity(0)]),
@@ -134,8 +135,8 @@ struct MovieDetailView: View {
         )
     }
     
+    //Extracto de código que genera la parte superior de la vista
     var headerView: some View {
-        
         ZStack {
             AsyncImage(url: RemoteImage.movieImage(path: movie.posterPath ?? "")) { image in
                 image
@@ -157,6 +158,7 @@ struct MovieDetailView: View {
         }
     }
     
+    //Extracto de código que genera los rectángulos de los géneros
     var genresView: some View {
         
         HStack {
@@ -190,8 +192,9 @@ struct MovieDetailView: View {
         }
     }
     
+    // Creación de botones de favoritas y pendientes
     var actionButtons: some View {
-        //Botones Favoritos - Pendientes...
+        
         HStack(spacing: 32)  {
             
             ActionButton(icon: isFavourite ? "fullHeart" : "emptyHeart") {
@@ -219,6 +222,7 @@ struct MovieDetailView: View {
         .frame(maxWidth: .infinity, alignment: .center)
     }
     
+    //Función para usar la función de créditos en la vista.
     func loadCredits() {
         Task {
             do {
@@ -231,6 +235,7 @@ struct MovieDetailView: View {
         }
     }
     
+    //Función para usar la función de detalles en la vista.
     func loadMovieDetails() {
         Task {
             do {
@@ -245,6 +250,7 @@ struct MovieDetailView: View {
     }
 }
 
+//Vista previa de la vista para usar en XCode
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         

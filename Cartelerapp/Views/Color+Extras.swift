@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 
+//Definiciones de los colores de la app
 extension Color {
     static let dsMain = Color(red: 11/255, green: 14/255, blue: 33/255)
     static let dsTitle = Color(.white)
@@ -9,6 +10,7 @@ extension Color {
     static let dsBackgroundList = Color(red: 37/255, green: 39/255, blue: 56/255)
     static let dsBackgroundButton = Color(red: 255/255, green: 255/255, blue: 255/255, opacity: 0.1)
 }
+
 
 extension UIColor {
     static let dsMainUI = UIColor(red: 11/255, green: 14/255, blue: 33/255, alpha: 1)

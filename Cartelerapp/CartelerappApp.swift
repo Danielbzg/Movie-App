@@ -37,6 +37,8 @@ struct CartelerappApp: App {
     var body: some Scene {
         WindowGroup {
                 TabView {
+                    /*Primer icono y texto del tabBar inferior de la app con su enlace
+                    a la vista correspondiente*/
                     NavigationView {
                         CarteleraView()
                     }
@@ -44,6 +46,8 @@ struct CartelerappApp: App {
                         Label("Movies", image: "logoSmall")
                     }
                     
+                    /*Segundo icono y texto del tabBar inferior de la app con su enlace
+                    a la vista correspondiente*/
                     NavigationView {
                         SearchView()
                     }
@@ -52,6 +56,8 @@ struct CartelerappApp: App {
                         Label("Buscador", systemImage: "magnifyingglass")
                     }
                     
+                    /*Tercer icono y texto del tabBar inferior de la app con su enlace
+                    a la vista correspondiente*/
                     NavigationView {
                         MovieListsView()
                     }

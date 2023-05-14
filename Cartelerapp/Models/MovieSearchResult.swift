@@ -2,7 +2,7 @@
 //  MovieSearchResult.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 9/5/23.
+//  Created by Daniel Boza García on 9/5/23.
 //
 
 import Foundation

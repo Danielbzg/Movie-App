@@ -2,11 +2,12 @@
 //  Repository.swift
 //  Cartelerapp
 //
-//  Created by alp1 on 29/3/23.
+//  Created by Daniel Boza García on 29/3/23.
 //
 
 import Foundation
 
+//Enumeración de rutas usadas en las consultas/llamadas a la API
 enum MoviesAPI {
 
     enum Domain: String {
@@ -25,6 +26,7 @@ enum MoviesAPI {
     
 }
 
+//Creación de getter y setter de algunas funciones
 extension UserDefaults {
 
     var favouritesMovies: [Int] {
@@ -49,10 +51,13 @@ extension Movie {
     }
 }
 
+//Clase que recopilará todas las funciones relacionadas con las consultas a la API
 class Repository {
 
     private var moviesFavourite: [Movie] = []
 
+    //Constante para establecer el formato en los que vendrán las variables
+    //de los json de las respuestas de la API
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -61,12 +66,13 @@ class Repository {
 
     let domain: MoviesAPI.Domain
     let apiKey: MoviesAPI.APIKey
-
+    
+    //Inicialización de la clase
     init(domain: MoviesAPI.Domain = .production, apiKey: MoviesAPI.APIKey = .production) {
         self.domain = domain
         self.apiKey = apiKey
     }
-
+    
     private func setMoviesFavourites(newMovies: [Movie]) {
         self.moviesFavourite = newMovies
     }
@@ -76,17 +82,18 @@ class Repository {
         URL(string: domain.rawValue + endpoint.rawValue + "?api_key=\(apiKey.rawValue)&language=\(Locale.current.identifier)")!
     }
     
-    //Getter, setter y añadir película a favorita
     public func favouritesMovies() -> [Int] {
         UserDefaults.standard.favouritesMovies
     }
 
+    //Función para añadir película a favoritas
     public func addMovieFavourite(_ movie: Movie) {
         var favouritesMovies = UserDefaults.standard.favouritesMovies
         favouritesMovies.append(movie.id)
         UserDefaults.standard.favouritesMovies = favouritesMovies
     }
-
+    
+    //Función para eliminar película de favoritas
     public func removeMovieFromFavourite(_ movie: Movie) {
         var favouritesMovies = UserDefaults.standard.favouritesMovies
         if let index = favouritesMovies.firstIndex(of: movie.id) {
@@ -95,6 +102,7 @@ class Repository {
         }
     }
     
+    //Función para extraer todas las películas marcadas como favoritas
     public func getFavouritesMovies() async throws -> [MovieDetails] {
         let favouritesMovies = UserDefaults.standard.favouritesMovies
         var moviesResult: [MovieDetails] = []
@@ -109,17 +117,19 @@ class Repository {
         }
         return moviesResult
     }
-    
+   
     public func pendingMovies() -> [Int] {
         UserDefaults.standard.pendingMovies
     }
     
+    //Función para añadir película a pendientes
     public func addMoviePending(_ movie: Movie) {
         var pendingMovies = UserDefaults.standard.pendingMovies
         pendingMovies.append(movie.id)
         UserDefaults.standard.pendingMovies = pendingMovies
     }
     
+    //Función para eliminar película de pendientes
     public func removeMovieFromPending(_ movie: Movie) {
         var pendingMovies = UserDefaults.standard.pendingMovies
         if let index = pendingMovies.firstIndex(of: movie.id) {
@@ -128,6 +138,7 @@ class Repository {
         }
     }
     
+    //Función para extraer todas las películas marcadas como pendientes
     public func getPendingMovies() async throws -> [MovieDetails] {
         let pendingMovies = UserDefaults.standard.pendingMovies
         var moviesResult: [MovieDetails] = []
@@ -143,11 +154,13 @@ class Repository {
         return moviesResult
     }
     
+    //Pasar el tipo de película resultante del buscador al formato básico de movie
     public func movieSearchResultToMovieIndividual(movieSearch: MovieSR) -> Movie {
         let convertedMovie = Movie(id: movieSearch.id, title: movieSearch.title, posterPath: movieSearch.posterPath, overview: movieSearch.overview, releaseDate: movieSearch.releaseDate, voteAverage: movieSearch.voteAverage, genreIds: movieSearch.genreIds)
         return convertedMovie
     }
-
+    
+    //Función para crear la url y hacer la llamada a películas que están actualmente en cines
     public func moviesInTheatres() async throws -> [Movie] {
         let url: URL = url(.moviesInTheatres)
         print(url)
